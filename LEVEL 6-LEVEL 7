@@ -1,0 +1,164 @@
+# Bandit Level 6 → Level 7
+
+## Level Goal
+
+The password for **Bandit Level 7** is stored **somewhere on the server**. The correct file has all of the following properties:
+
+* **Owned by user:** `bandit7`
+* **Owned by group:** `bandit6`
+* **Exactly 33 bytes** in size
+
+The challenge is to search the **entire server** using file ownership, group ownership, and file size.
+
+---
+
+## Concept Learned
+
+The **`find`** command can search files across the entire filesystem using properties like **owner**, **group**, and **size**. Since many directories cannot be accessed by `bandit6`, error messages will appear. These errors can be hidden using **`2>/dev/null`**.
+
+### Commands Used
+
+| Command | Purpose                                         |
+| ------- | ----------------------------------------------- |
+| `pwd`   | Shows the current working directory.            |
+| `find`  | Searches the entire server for a matching file. |
+| `cat`   | Displays the contents of the located file.      |
+| `ssh`   | Logs into the next Bandit level.                |
+
+---
+
+## Walkthrough (Windows Command Prompt)
+
+### Step 1 – Verify Your Current Directory
+
+After logging into **bandit6**, check your location.
+
+```bash
+pwd
+```
+
+**Output**
+
+```text
+/home/bandit6
+```
+
+---
+
+### Step 2 – Search the Entire Server
+
+Run the following command:
+
+```bash
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+```
+
+### Explanation of the Command
+
+| Option           | Meaning                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `/`              | Start searching from the root directory (entire server). |
+| `-user bandit7`  | Find files owned by **bandit7**.                         |
+| `-group bandit6` | Find files belonging to the **bandit6** group.           |
+| `-size 33c`      | Find files that are exactly **33 bytes** (`c` = bytes).  |
+| `2>/dev/null`    | Hide "Permission denied" error messages.                 |
+
+**Output**
+
+```text
+/var/lib/dpkg/info/bandit7.password
+```
+
+The matching file is located in **`/var/lib/dpkg/info/`**.
+
+---
+
+### Step 3 – Read the Password File
+
+```bash
+cat /var/lib/dpkg/info/bandit7.password
+```
+
+**Output**
+
+```text
+<level 7 password>
+```
+
+This is the password for **bandit7**.
+
+---
+
+### Step 4 – Exit the Current Session
+
+```bash
+exit
+```
+
+---
+
+### Step 5 – Log into Bandit Level 7
+
+```cmd
+ssh bandit7@bandit.labs.overthewire.org -p 2220
+```
+
+When prompted, enter the password obtained from `bandit7.password`.
+
+**Successful Login Prompt**
+
+```text
+bandit7@bandit:~$
+```
+
+---
+
+## Complete Command Sequence
+
+```bash
+pwd
+find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+cat /var/lib/dpkg/info/bandit7.password
+exit
+ssh bandit7@bandit.labs.overthewire.org -p 2220
+```
+
+---
+
+## Explanation
+
+* `find /` searches the **entire filesystem** recursively.
+* `-user bandit7` filters files owned by `bandit7`.
+* `-group bandit6` filters files belonging to the `bandit6` group.
+* `-size 33c` ensures the file is exactly **33 bytes**.
+* `2>/dev/null` suppresses permission-denied errors.
+* `cat` displays the password stored in the file.
+* `ssh` logs into the next Bandit level.
+
+---
+
+## Why `2>/dev/null` Is Used
+
+Searching from `/` accesses many protected directories.
+
+| Command                                                     | Result                                                              |
+| ----------------------------------------------------------- | ------------------------------------------------------------------- |
+| `find / -user bandit7 -group bandit6 -size 33c`             | Displays many **Permission denied** messages along with the result. |
+| `find / -user bandit7 -group bandit6 -size 33c 2>/dev/null` | Displays **only the matching file**, making the output clean.       |
+
+**`2>/dev/null`** redirects error output (stderr) to `/dev/null`, which discards it.
+
+---
+
+## Key Takeaways
+
+* Learned how to search the **entire Linux filesystem** using `find`.
+* Filtered files by **owner**, **group**, and **size** simultaneously.
+* Used **`2>/dev/null`** to suppress permission errors.
+* Retrieved the password for **Bandit Level 7** and logged into the next level.
+
+---
+
+## Result
+
+Successfully located **`/var/lib/dpkg/info/bandit7.password`**, obtained the **Bandit Level 7** password `<level 7 password>`, and logged into the **bandit7** account.
