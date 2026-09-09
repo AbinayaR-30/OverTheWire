@@ -1,0 +1,203 @@
+# Bandit Level 3 → Level 4
+
+## Level Goal
+
+The password for **Bandit Level 4** is stored in a **hidden file** inside the **`inhere`** directory.
+
+The challenge is to learn how to view and access **hidden files** in Linux.
+
+---
+
+## Concept Learned
+
+In Linux, files and directories whose names begin with a **dot (`.`)** are called **hidden files**. They are not displayed with a normal `ls` command.
+
+To view hidden files, use the `-a` option with `ls`.
+
+### Commands Used
+
+| Command | Purpose                                   |
+| ------- | ----------------------------------------- |
+| `pwd`   | Shows the current working directory.      |
+| `ls`    | Lists visible files and directories.      |
+| `cd`    | Changes into the `inhere` directory.      |
+| `ls -a` | Lists all files, including hidden files.  |
+| `cat`   | Displays the contents of the hidden file. |
+| `ssh`   | Logs into the next Bandit level.          |
+
+---
+
+## Walkthrough (Windows Command Prompt)
+
+### Step 1 – Verify Your Current Directory
+
+After logging into **bandit3**, check your location.
+
+```bash
+pwd
+```
+
+**Output**
+
+```text
+/home/bandit3
+```
+
+---
+
+### Step 2 – List Files
+
+Display the contents of the home directory.
+
+```bash
+ls
+```
+
+**Output**
+
+```text
+inhere
+```
+
+A directory named **`inhere`** is present.
+
+---
+
+### Step 3 – Enter the `inhere` Directory
+
+```bash
+cd inhere
+```
+
+Verify the location if needed.
+
+```bash
+pwd
+```
+
+**Output**
+
+```text
+/home/bandit3/inhere
+```
+
+---
+
+### Step 4 – Display Hidden Files
+
+A normal `ls` shows nothing because the password file is hidden.
+
+```bash
+ls
+```
+
+**Output**
+
+```text
+(No output)
+```
+
+Now list **all** files.
+
+```bash
+ls -a
+```
+
+**Output**
+
+```text
+.
+..
+...Hiding-From-You
+```
+
+The file **`...Hiding-From-You`** is hidden because its name begins with dots.
+
+---
+
+### Step 5 – Read the Hidden File
+
+```bash
+cat ...Hiding-From-You
+```
+
+**Output**
+
+```text
+<Bandit Level 4 Password>
+```
+
+This is the password for **bandit4**.
+
+---
+
+### Step 6 – Exit the Current Session
+
+```bash
+exit
+```
+
+---
+
+### Step 7 – Log into Bandit Level 4
+
+```cmd
+ssh bandit4@bandit.labs.overthewire.org -p 2220
+```
+
+When prompted, enter the password obtained from the hidden file.
+
+**Successful Login Prompt**
+
+```text
+bandit4@bandit:~$
+```
+
+---
+
+## Complete Command Sequence
+
+```bash
+pwd
+ls
+cd inhere
+ls -a
+cat ...Hiding-From-You
+exit
+ssh bandit4@bandit.labs.overthewire.org -p 2220
+```
+
+---
+
+## Explanation
+
+* `ls` shows visible files and directories.
+* `cd inhere` enters the target directory.
+* `ls -a` displays hidden files along with normal files.
+* `cat ...Hiding-From-You` prints the password stored in the hidden file.
+* `ssh` logs into the next Bandit level.
+
+---
+
+## Why `ls -a` Is Required
+
+| Command | Result                                                                                          |
+| ------- | ----------------------------------------------------------------------------------------------- |
+| `ls`    | Shows only visible files. Hidden files are not displayed.                                       |
+| `ls -a` | Shows **all** files, including hidden files (`.` and `..` as well as files beginning with `.`). |
+
+---
+
+## Key Takeaways
+
+* Learned that files beginning with **`.`** are hidden in Linux.
+* Used **`ls -a`** to display hidden files.
+* Navigated into a directory using **`cd`**.
+* Retrieved the password from a hidden file and logged into **bandit4**.
+
+---
+
+## Result
+
+
+Successfully found the hidden file **`...Hiding-From-You`**, obtained the **Bandit Level 4** password, and logged into the **bandit4** account.
