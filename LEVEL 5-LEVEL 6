@@ -1,0 +1,187 @@
+# Bandit Level 5 → Level 6
+
+## Level Goal
+
+The password for **Bandit Level 6** is stored in a file somewhere inside the **`inhere`** directory. The correct file has **all** of the following properties:
+
+* **Human-readable**
+* **Exactly 1033 bytes** in size
+* **Not executable**
+
+The challenge is to use the **`find`** command with multiple conditions to locate a specific file.
+
+---
+
+## Concept Learned
+
+The **`find`** command searches for files and directories based on conditions such as **size**, **type**, **permissions**, and **name**. Instead of checking every file manually, `find` filters and returns only files that match the given criteria.
+
+### Commands Used
+
+| Command | Purpose                                          |
+| ------- | ------------------------------------------------ |
+| `pwd`   | Shows the current working directory.             |
+| `ls`    | Lists files and directories.                     |
+| `cd`    | Changes into the `inhere` directory.             |
+| `find`  | Searches for files matching specific properties. |
+| `cat`   | Displays the contents of the located file.       |
+| `ssh`   | Logs into the next Bandit level.                 |
+
+---
+
+## Walkthrough (Windows Command Prompt)
+
+### Step 1 – Verify Your Current Directory
+
+After logging into **bandit5**, check your location.
+
+```bash
+pwd
+```
+
+**Output**
+
+```text
+/home/bandit5
+```
+
+---
+
+### Step 2 – Enter the `inhere` Directory
+
+List the directory and move into it.
+
+```bash
+ls
+cd inhere
+```
+
+Verify your location.
+
+```bash
+pwd
+```
+
+**Output**
+
+```text
+/home/bandit5/inhere
+```
+
+---
+
+### Step 3 – Find the Required File
+
+Run the following command:
+
+```bash
+find . -type f -size 1033c ! -executable
+```
+
+**Explanation**
+
+| Option          | Meaning                                                   |
+| --------------- | --------------------------------------------------------- |
+| `.`             | Search from the current directory.                        |
+| `-type f`       | Search only for files.                                    |
+| `-size 1033c`   | Find files that are exactly **1033 bytes** (`c` = bytes). |
+| `! -executable` | Exclude executable files.                                 |
+
+**Output**
+
+```text
+./maybehere07/.file2
+```
+
+The file matching all conditions is **`.file2`** inside the `maybehere07` directory.
+
+---
+
+### Step 4 – Read the Password File
+
+```bash
+cat ./maybehere07/.file2
+```
+
+**Output**
+
+```text
+morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+```
+
+This is the password for **bandit6**.
+
+---
+
+### Step 5 – Exit the Current Session
+
+```bash
+exit
+```
+
+---
+
+### Step 6 – Log into Bandit Level 6
+
+```cmd
+ssh bandit6@bandit.labs.overthewire.org -p 2220
+```
+
+When prompted, enter the password obtained from `.file2`.
+
+**Successful Login Prompt**
+
+```text
+bandit6@bandit:~$
+```
+
+---
+
+## Complete Command Sequence
+
+```bash
+pwd
+ls
+cd inhere
+find . -type f -size 1033c ! -executable
+cat ./maybehere07/.file2
+exit
+ssh bandit6@bandit.labs.overthewire.org -p 2220
+```
+
+---
+
+## Explanation
+
+* `cd inhere` enters the directory containing many subdirectories and files.
+* `find` searches recursively inside `inhere`.
+* The command filters files by **type**, **size**, and **executable permission**.
+* `cat` reads the contents of the file returned by `find`.
+* `ssh` logs into the next Bandit level.
+
+---
+
+## Why Use `find`?
+
+| Command                                    | Result                                                |
+| ------------------------------------------ | ----------------------------------------------------- |
+| `ls`                                       | Shows only files in the current directory.            |
+| `find .`                                   | Searches recursively through all subdirectories.      |
+| `find . -type f -size 1033c ! -executable` | Finds only the file matching the required properties. |
+
+`find` is much faster than checking hundreds of files manually.
+
+---
+
+## Key Takeaways
+
+* Learned how to use the **`find`** command with multiple search conditions.
+* Searched recursively inside subdirectories.
+* Filtered files by **size**, **type**, and **permissions**.
+* Retrieved the password for **Bandit Level 6** and logged into the next level.
+
+---
+
+## Result
+
+Successfully located the file **`./maybehere07/.file2`**, obtained the **Bandit Level 6** password `morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj`, and logged into the **bandit6** account.
