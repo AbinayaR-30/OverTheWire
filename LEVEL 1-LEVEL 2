@@ -1,0 +1,152 @@
+# Bandit Level 1 → Level 2
+
+## Level Goal
+
+The password for **Bandit Level 2** is stored in a file named **`-`** (a single dash) located in the home directory of `bandit1`.
+
+The challenge is to learn how to access files whose names begin with special characters.
+
+---
+
+## Concept Learned
+
+In Linux, **`-`** is normally interpreted as **standard input (stdin)** or an option by many commands. To access a file literally named `-`, you must specify its path explicitly.
+
+### Commands Used
+
+| Command   | Purpose                                 |
+| --------- | --------------------------------------- |
+| `pwd`     | Shows the current working directory.    |
+| `ls`      | Lists files in the current directory.   |
+| `cat ./-` | Reads the contents of a file named `-`. |
+| `ssh`     | Logs into the next Bandit level.        |
+
+---
+
+## Walkthrough (Windows Command Prompt)
+
+### Step 1 – Verify Your Current Directory
+
+After logging into **bandit1**, check your location.
+
+```bash
+pwd
+```
+
+**Output**
+
+```text
+/home/bandit1
+```
+
+---
+
+### Step 2 – List Files
+
+Display the files in the home directory.
+
+```bash
+ls
+```
+
+**Output**
+
+```text
+-
+```
+
+The directory contains a file whose name is a single dash (`-`).
+
+---
+
+### Step 3 – Read the File Named `-`
+
+A normal `cat -` will not work because `-` is treated as standard input.
+
+**Correct command:**
+
+```bash
+cat ./-
+```
+
+**Output**
+
+```text
+<Bandit Level 2 Password>
+```
+
+This is the password for **bandit2**.
+
+> `./-` tells Linux to read the file named `-` from the current directory (`.`).
+
+---
+
+### Step 4 – Exit the Current Session
+
+```bash
+exit
+```
+
+---
+
+### Step 5 – Log into Bandit Level 2
+
+```cmd
+ssh bandit2@bandit.labs.overthewire.org -p 2220
+```
+
+When prompted, enter the password obtained from `cat ./-`.
+
+**Successful Login Prompt**
+
+```text
+bandit2@bandit:~$
+```
+
+---
+
+## Complete Command Sequence
+
+```bash
+pwd
+ls
+cat ./-
+exit
+ssh bandit2@bandit.labs.overthewire.org -p 2220
+```
+
+---
+
+## Explanation
+
+* `pwd` confirms the current directory.
+* `ls` lists the available files.
+* `cat ./-` accesses the file named `-` by using its relative path.
+* `exit` closes the current SSH session.
+* `ssh` connects to the next Bandit level.
+
+---
+
+## Why `cat -` Does Not Work
+
+| Command   | Meaning                                            |
+| --------- | -------------------------------------------------- |
+| `cat -`   | Reads input from the keyboard (stdin).             |
+| `cat ./-` | Reads the file named `-` in the current directory. |
+
+Adding `./` removes the ambiguity and treats `-` as a filename.
+
+---
+
+## Key Takeaways
+
+* Learned how Linux treats **`-`** as a special character.
+* Used a **relative path (`./`)** to access a specially named file.
+* Retrieved the password for the next Bandit level.
+* Logged into **bandit2** using SSH.
+
+---
+
+## Result
+
+Successfully accessed the file named `-`, obtained the **Bandit Level 2** password, and logged into the **bandit2** account.
