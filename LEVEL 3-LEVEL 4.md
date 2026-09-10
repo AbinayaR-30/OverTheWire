@@ -1,10 +1,10 @@
-# Bandit Level 3 → Level 4 (Linux Terminal)
+# Bandit Level 3 → Level 4 (Windows Command Prompt / PowerShell)
 
 ## Level Goal
 
 The password for Bandit Level 4 is stored in a hidden file inside the `inhere` directory.
 
-The challenge is to learn how to view and access hidden files in Linux.
+The challenge is to learn how to view and access hidden files in Linux while connected to the remote server from Windows Command Prompt or PowerShell.
 
 ## Concept Learned
 
@@ -15,7 +15,7 @@ To view hidden files, use the `-a` option with `ls`.
 ### Commands Used
 
 |
-Linux Command
+Command
 
 |
 
@@ -87,11 +87,11 @@ Logs into the next Bandit level.
 
 |
 
-## Walkthrough (Linux Terminal)
+## Walkthrough (Windows Command Prompt / PowerShell)
 
 ### Step 1 – Verify Your Current Directory
 
-After logging into bandit3, check your current location.
+After logging into bandit3 from Windows Command Prompt or PowerShell, check your current location on the remote server.
 
 Bash
 
@@ -240,7 +240,7 @@ Output
 
 This is the password for bandit4.
 
-### Step 6 – Exit the Current Session
+### Step 6 – Exit the Current SSH Session
 
 Bash
 
@@ -255,14 +255,24 @@ logout
 Connection to bandit.labs.overthewire.org closed.
 ```
 
-### Step 7 – Log into Bandit Level 4
+You will return to your Windows Command Prompt or PowerShell prompt.
 
-From your Linux terminal, connect to the next level.
+Example:
 
-Bash
+cmd
 
 ```
-user@ubuntu:~$ ssh bandit4@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername>
+```
+
+### Step 7 – Log into Bandit Level 4
+
+From Windows Command Prompt or PowerShell, connect to the next Bandit level.
+
+PowerShell
+
+```
+C:\Users\YourUsername> ssh bandit4@bandit.labs.overthewire.org -p 2220
 ```
 
 Password Prompt
@@ -285,17 +295,19 @@ You are now logged into Bandit Level 4.
 
 ## Complete Command Sequence
 
-Bash
+PowerShell
 
 ```
-bandit3@bandit:~$ pwd
-bandit3@bandit:~$ ls
-bandit3@bandit:~$ cd inhere
-bandit3@bandit:~/inhere$ ls -a
-bandit3@bandit:~/inhere$ cat ...Hiding-From-You
-bandit3@bandit:~/inhere$ exit
+# Inside the Bandit server
+pwd
+ls
+cd inhere
+ls -a
+cat ...Hiding-From-You
+exit
 
-user@ubuntu:~$ ssh bandit4@bandit.labs.overthewire.org -p 2220
+# Back in Windows Command Prompt / PowerShell
+ssh bandit4@bandit.labs.overthewire.org -p 2220
 ```
 
 ## Explanation
@@ -315,7 +327,7 @@ Explanation
 
 |
 
-Confirms the current working directory.
+Confirms the current working directory on the remote Linux server.
 
 |
 |
@@ -360,7 +372,7 @@ Reads the hidden file containing the password.
 
 |
 
-Closes the current SSH session.
+Closes the current SSH session and returns to Windows Command Prompt or PowerShell.
 
 |
 |
@@ -399,7 +411,7 @@ Shows only visible files. Hidden files are not displayed.
 
 |
 
-Shows all files, including hidden files (`.` and `..`), and files beginning with `.`.
+Shows all files, including hidden files (`.` and `..`) and files beginning with `.`.
 
 |
 
@@ -407,9 +419,10 @@ The `-a` option stands for all.
 
 ## Terminal Output (Example)
 
-Bash
-
 ```
+C:\Users\YourUsername> ssh bandit3@bandit.labs.overthewire.org -p 2220
+bandit3@bandit.labs.overthewire.org's password:
+
 bandit3@bandit:~$ pwd
 /home/bandit3
 
@@ -433,8 +446,9 @@ bandit3@bandit:~/inhere$ exit
 logout
 Connection to bandit.labs.overthewire.org closed.
 
-user@ubuntu:~$ ssh bandit4@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername> ssh bandit4@bandit.labs.overthewire.org -p 2220
 bandit4@bandit.labs.overthewire.org's password:
+
 bandit4@bandit:~$
 ```
 
@@ -448,10 +462,13 @@ bandit4@bandit:~$
 
 * Read the password from a hidden file using `cat`.
 
-* Logged into bandit4 using SSH from the Linux terminal.
+* Logged into bandit4 using SSH from Windows Command Prompt / PowerShell.
 
 ## Result
 
-Successfully found the hidden file `...Hiding-From-You`, obtained the Bandit Level 4 password, and logged into the bandit4 account using the Linux terminal.
-
-<img width="454" height="256" alt="image" src="https://github.com/user-attachments/assets/54c7e2e9-2119-4c63-97ab-a3dd3c202540" />
+Successfully found the hidden file `...Hiding-From-You`, obtained the Bandit Level 4 password, and logged into the bandit4 account using Windows Command Prompt / PowerShell.
+<img width="309" height="58" alt="image" src="https://github.com/user-attachments/assets/1fe91cd0-e476-4b00-a3d7-9abe424ee8d7" />
+<img width="538" height="57" alt="image" src="https://github.com/user-attachments/assets/770fcff6-7ff9-4ee2-a31c-b4ff1db99250" />
+<img width="1029" height="138" alt="image" src="https://github.com/user-attachments/assets/4121563d-aad4-4260-a702-9cb593979fa7" />
+<img width="688" height="36" alt="image" src="https://github.com/user-attachments/assets/7a92a657-716e-46e4-a8a7-9bc7a541802c" />
+<img width="685" height="60" alt="image" src="https://github.com/user-attachments/assets/d1cf3437-ba8c-4129-9da5-789e24581a03" />
