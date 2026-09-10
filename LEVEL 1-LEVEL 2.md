@@ -1,10 +1,10 @@
-# Bandit Level 1 → Level 2 (Linux Terminal)
+# Bandit Level 1 → Level 2 (Windows Command Prompt / PowerShell)
 
 ## Level Goal
 
 The password for Bandit Level 2 is stored in a file named `-` (a single dash) located in the home directory of `bandit1`.
 
-The challenge is to learn how to access files whose names begin with special characters.
+The challenge is to learn how to access files whose names begin with special characters while connected to the remote Linux server from Windows Command Prompt or PowerShell.
 
 ## Concept Learned
 
@@ -13,7 +13,7 @@ In Linux, `-` is normally interpreted as standard input (stdin) or as an option 
 ### Commands Used
 
 |
-Linux Command
+Command
 
 |
 
@@ -67,11 +67,11 @@ Logs into the next Bandit level.
 
 |
 
-## Walkthrough (Linux Terminal)
+## Walkthrough (Windows Command Prompt / PowerShell)
 
 ### Step 1 – Verify Your Current Directory
 
-After logging into bandit1, check your current location.
+After logging into bandit1 from Windows Command Prompt or PowerShell, check your current location on the remote server.
 
 Bash
 
@@ -127,7 +127,7 @@ This is the password for bandit2.
 
 > Note: `./-` tells Linux to read the file named `-` from the current directory (`.`), instead of interpreting `-` as standard input.
 
-### Step 4 – Exit the Current Session
+### Step 4 – Exit the Current SSH Session
 
 After copying the password, exit the current SSH session.
 
@@ -144,14 +144,24 @@ logout
 Connection to bandit.labs.overthewire.org closed.
 ```
 
-### Step 5 – Log into Bandit Level 2
+You will return to your Windows Command Prompt or PowerShell prompt.
 
-From your Linux terminal, connect to the next Bandit level.
+Example:
 
-Bash
+cmd
 
 ```
-user@ubuntu:~$ ssh bandit2@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername>
+```
+
+### Step 5 – Log into Bandit Level 2
+
+From Windows Command Prompt or PowerShell, connect to the next Bandit level.
+
+PowerShell
+
+```
+C:\Users\YourUsername> ssh bandit2@bandit.labs.overthewire.org -p 2220
 ```
 
 When prompted, enter the password obtained from `cat ./-`.
@@ -176,15 +186,17 @@ You are now logged into Bandit Level 2.
 
 ## Complete Command Sequence
 
-Bash
+PowerShell
 
 ```
-bandit1@bandit:~$ pwd
-bandit1@bandit:~$ ls
-bandit1@bandit:~$ cat ./-
-bandit1@bandit:~$ exit
+# Inside the Bandit server
+pwd
+ls
+cat ./-
+exit
 
-user@ubuntu:~$ ssh bandit2@bandit.labs.overthewire.org -p 2220
+# Back in Windows Command Prompt / PowerShell
+ssh bandit2@bandit.labs.overthewire.org -p 2220
 ```
 
 ## Explanation
@@ -204,7 +216,7 @@ Explanation
 
 |
 
-Confirms the current working directory.
+Confirms the current working directory on the remote Linux server.
 
 |
 |
@@ -231,7 +243,7 @@ Reads the file named `-` using its relative path.
 
 |
 
-Closes the current SSH session.
+Closes the current SSH session and returns to Windows Command Prompt or PowerShell.
 
 |
 |
@@ -252,9 +264,10 @@ Adding `./` removes the ambiguity and forces Linux to treat `-` as a filename.
 
 ## Terminal Output (Example)
 
-Bash
-
 ```
+C:\Users\YourUsername> ssh bandit1@bandit.labs.overthewire.org -p 2220
+bandit1@bandit.labs.overthewire.org's password:
+
 bandit1@bandit:~$ pwd
 /home/bandit1
 
@@ -268,8 +281,9 @@ bandit1@bandit:~$ exit
 logout
 Connection to bandit.labs.overthewire.org closed.
 
-user@ubuntu:~$ ssh bandit2@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername> ssh bandit2@bandit.labs.overthewire.org -p 2220
 bandit2@bandit.labs.overthewire.org's password:
+
 bandit2@bandit:~$
 ```
 
@@ -281,9 +295,10 @@ bandit2@bandit:~$
 
 * Retrieved the password for Bandit Level 2.
 
-* Logged into bandit2 using SSH from the Linux terminal.
+* Logged into bandit2 using SSH from Windows Command Prompt / PowerShell.
 
 ## Result
 
-Successfully accessed the file named `-`, obtained the Bandit Level 2 password, and logged into the bandit2 account using the Linux terminal.
-<img width="471" height="102" alt="image" src="https://github.com/user-attachments/assets/3f719d46-c0fb-4cdd-8307-be8c8b4676c7" />
+Successfully accessed the file named `-`, obtained the Bandit Level 2 password, and logged into the bandit2 account using Windows Command Prompt / PowerShell.
+
+<img width="887" height="200" alt="image" src="https://github.com/user-attachments/assets/6b6dc09c-c07a-4612-9b9c-7cd0bf7dda1e" />
