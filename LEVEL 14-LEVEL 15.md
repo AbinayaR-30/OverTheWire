@@ -39,7 +39,7 @@ ssh bandit14@bandit.labs.overthewire.org -p 2220
 Enter the **Bandit Level 14 password**:
 
 ```text
-4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+<next level password>
 ```
 
 **Successful Login Prompt**
@@ -61,7 +61,7 @@ cat /etc/bandit_pass/bandit14
 **Output**
 
 ```text
-4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+<next level password>
 ```
 
 ---
@@ -91,14 +91,14 @@ The terminal waits for your input.
 Paste the **Bandit Level 14 password** and press **Enter**.
 
 ```text
-4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+<next level password>
 ```
 
 **Output**
 
 ```text
 Correct!
-cluFn7wTiGryunymYOu4RcffSxQluehd
+<next level password>
 ```
 
 The second line is the password for **Bandit Level 15**.
@@ -108,7 +108,7 @@ The second line is the password for **Bandit Level 15**.
 ### Step 5 – Password for Bandit Level 15
 
 ```text
-cluFn7wTiGryunymYOu4RcffSxQluehd
+<next level password>
 ```
 
 This is the password for **bandit15**.
@@ -136,7 +136,7 @@ ssh bandit15@bandit.labs.overthewire.org -p 2220
 Enter the password obtained from Netcat:
 
 ```text
-cluFn7wTiGryunymYOu4RcffSxQluehd
+<next level password>
 ```
 
 **Successful Login Prompt**
@@ -196,5 +196,5 @@ ssh bandit15@bandit.labs.overthewire.org -p 2220
 
 ## Result
 
-Successfully connected to **localhost:30000** using Netcat, submitted the **Bandit Level 14** password, obtained the **Bandit Level 15** password **`cluFn7wTiGryunymYOu4RcffSxQluehd`**, and logged into the **bandit15** account.
+Successfully connected to **localhost:30000** using Netcat, submitted the **Bandit Level 14** password, obtained the **Bandit Level 15** password **`<next level password>`**, and logged into the **bandit15** account.
 <img width="371" height="126" alt="image" src="https://github.com/user-attachments/assets/35fead64-8951-40bb-8443-4d14f258ac2a" />
