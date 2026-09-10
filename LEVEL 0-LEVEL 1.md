@@ -1,223 +1,94 @@
-# Bandit Level 0 → Level 1 (Windows Command Prompt / PowerShell)
+# Bandit Level 0 → Level 1
 
-## Level Goal
+## Walkthrough
 
-The password for Bandit Level 1 is stored in a file named `readme` located in the home directory of `bandit0`.
+Step 1: Verify your current directory after logging into `bandit0`.
 
-The objective is to:
+pwd
 
-1. Locate the `readme` file.
+Output
 
-2. Display its contents.
+/home/bandit0
 
-3. Use the retrieved password to log in as bandit1.
+This confirms you are in the `bandit0` home directory.
 
-## Concept Learned
+Step 2: List the files in the current directory.
 
-This level introduces basic Linux file operations while accessing a remote Linux server from Windows Command Prompt or PowerShell.
+ls
 
-### Commands Used
+Output
 
-|
-Command
+readme
 
-|
+The `readme` file contains the password for the next level.
 
-Purpose
+Step 3: Display the contents of the `readme` file.
 
-|
-| --- | --- |
-|
+cat readme
 
-`ls`
+Output
 
-|
+<Bandit Level 1 Password>
 
-Lists files and directories in the current directory.
+<img width="1245" height="249" alt="image" src="https://github.com/user-attachments/assets/4c8bb197-ddf7-4c95-a3b4-232823ccdcb9" />
 
-|
-|
 
-`cat`
+Copy this password. You will use it to log in to bandit1.
 
-|
+Step 4: Exit the current SSH session.
 
-Displays the contents of a file.
+exit
 
-|
-|
+This returns you to your Windows Command Prompt or PowerShell.
 
-`pwd`
+Step 5: Log in to bandit1 using the password from `readme`.
 
-|
+ssh [bandit1@bandit.labs.overthewire.org](mailto:bandit1@bandit.labs.overthewire.org) -p 2220
+
+When prompted, paste the password from Step 3.
+
+## Commands Used
+
+pwd
 
 Shows the current working directory.
 
-|
-|
+ls
 
-`exit`
+Lists files in the current directory.
 
-|
+cat readme
+
+Displays the contents of the `readme` file.
+
+exit
 
 Closes the current SSH session.
 
-|
-|
+ssh [bandit1@bandit.labs.overthewire.org](mailto:bandit1@bandit.labs.overthewire.org) -p 2220
 
-`ssh`
+Logs into Bandit Level 1.
 
-|
+## Concept Learnt
 
-Logs into the next Bandit level using the new password.
+This level teaches basic Linux file operations.
 
-|
+* `pwd` tells you where you are in the file system.
 
-## Walkthrough (Windows Command Prompt / PowerShell)
+* `ls` shows the files in the current directory.
 
-### Step 1 – Verify Your Current Directory
+* `cat` reads and displays the contents of a file.
 
-After logging into bandit0 from Windows Command Prompt or PowerShell, check where you are on the remote server.
+* `exit` closes the SSH connection.
 
-Bash
+## Takeaways
 
-```
-bandit0@bandit:~$ pwd
-```
+* Check your location using `pwd`.
 
-Output
+* Use `ls` to find files in a directory.
 
-```
-/home/bandit0
-```
+* Use `cat` to read a file's contents.
 
-This is the home directory for `bandit0` on the remote Linux server.
+* Exit the current session before logging into the next Bandit level.
 
-### Step 2 – List Files in the Home Directory
-
-Use the `ls` command.
-
-Bash
-
-```
-bandit0@bandit:~$ ls
-```
-
-Output
-
-```
-readme
-```
-
-The directory contains a file named `readme`.
-
-### Step 3 – Read the Password from the File
-
-Use `cat` to display the contents.
-
-Bash
-
-```
-bandit0@bandit:~$ cat readme
-```
-
-Output
-
-```
-<Bandit Level 1 Password>
-```
-
-This string is the password for bandit1.
-
-> Note: Copy this password into a local text file (such as Notepad) because you will need it to log in to the next level.
-
-### Step 4 – Exit the Current SSH Session
-
-Leave the `bandit0` session.
-
-Bash
-
-```
-bandit0@bandit:~$ exit
-```
-
-You will return to your Windows Command Prompt or PowerShell prompt.
-
-Example:
-
-cmd
-
-```
-C:\Users\YourUsername>
-```
-
-### Step 5 – Log into Bandit Level 1
-
-From Windows Command Prompt or PowerShell, use SSH with the next username.
-
-PowerShell
-
-```
-C:\Users\YourUsername> ssh bandit1@bandit.labs.overthewire.org -p 2220
-```
-
-When prompted, paste the password obtained from the `readme` file.
-
-```
-bandit1@bandit.labs.overthewire.org's password:
-```
-
-After entering the correct password, you will see the Bandit Level 1 shell prompt.
-
-Bash
-
-```
-bandit1@bandit:~$
-```
-
-You are now logged into Bandit Level 1.
-
-## Complete Command Sequence
-
-PowerShell
-
-```
-# Inside the Bandit server
-pwd
-ls
-cat readme
-exit
-
-# Back in Windows Command Prompt / PowerShell
-ssh bandit1@bandit.labs.overthewire.org -p 2220
-```
-
-## Explanation
-
-* `pwd` confirms the current location on the remote Linux server.
-
-* `ls` lists the available files.
-
-* `cat readme` prints the contents of the `readme` file.
-
-* `exit` closes the current SSH session and returns to Windows Command Prompt or PowerShell.
-
-* `ssh` establishes a new connection as `bandit1`.
-
-## Key Takeaways
-
-* Learned how to list files using `ls`.
-
-* Learned how to read file contents using `cat`.
-
-* Retrieved the password stored inside a file.
-
-* Exited the current SSH session using `exit`.
-
-* Logged into the next Bandit level from Windows Command Prompt / PowerShell using SSH.
-
-## Result
-
-Successfully obtained the Bandit Level 1 password from the `readme` file and logged into the `bandit1` account using Windows Command Prompt / PowerShell.
-
-<img width="1245" height="249" alt="image" src="https://github.com/user-attachments/assets/f8060949-d291-40ef-a9a9-ed8c68cdf809" />
+* Use the retrieved password to connect as the next user.
