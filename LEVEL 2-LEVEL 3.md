@@ -1,10 +1,10 @@
-# Bandit Level 2 → Level 3 (Linux Terminal)
+# Bandit Level 2 → Level 3 
 
 ## Level Goal
 
 The password for Bandit Level 3 is stored in a file named `--spaces in this filename--` located in the home directory of `bandit2`.
 
-The challenge is to learn how to access filenames that contain spaces.
+The challenge is to learn how to access filenames that contain spaces while connected to the remote Linux server from Windows Command Prompt or PowerShell.
 
 ## Concept Learned
 
@@ -13,7 +13,7 @@ In Linux, spaces separate command arguments. If a filename contains spaces, the 
 ### Commands Used
 
 |
-Linux Command
+Command
 
 |
 
@@ -67,11 +67,11 @@ Logs into the next Bandit level.
 
 |
 
-## Walkthrough (Linux Terminal)
+## Walkthrough (Windows Command Prompt / PowerShell)
 
 ### Step 1 – Verify Your Current Directory
 
-After logging into bandit2, check your current location.
+After logging into bandit2 from Windows Command Prompt or PowerShell, check your current location on the remote server.
 
 Bash
 
@@ -137,7 +137,7 @@ bandit2@bandit:~$ cat ./--spaces\ in\ this\ filename--
 
 Both commands produce the same output.
 
-### Step 4 – Exit the Current Session
+### Step 4 – Exit the Current SSH Session
 
 Bash
 
@@ -152,14 +152,24 @@ logout
 Connection to bandit.labs.overthewire.org closed.
 ```
 
-### Step 5 – Log into Bandit Level 3
+You will return to your Windows Command Prompt or PowerShell prompt.
 
-From your Linux terminal, connect to the next level.
+Example:
 
-Bash
+cmd
 
 ```
-user@ubuntu:~$ ssh bandit3@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername>
+```
+
+### Step 5 – Log into Bandit Level 3
+
+From Windows Command Prompt or PowerShell, connect to the next Bandit level.
+
+PowerShell
+
+```
+C:\Users\YourUsername> ssh bandit3@bandit.labs.overthewire.org -p 2220
 ```
 
 Password Prompt
@@ -182,15 +192,17 @@ You are now logged into Bandit Level 3.
 
 ## Complete Command Sequence
 
-Bash
+PowerShell
 
 ```
-bandit2@bandit:~$ pwd
-bandit2@bandit:~$ ls
-bandit2@bandit:~$ cat "./--spaces in this filename--"
-bandit2@bandit:~$ exit
+# Inside the Bandit server
+pwd
+ls
+cat "./--spaces in this filename--"
+exit
 
-user@ubuntu:~$ ssh bandit3@bandit.labs.overthewire.org -p 2220
+# Back in Windows Command Prompt / PowerShell
+ssh bandit3@bandit.labs.overthewire.org -p 2220
 ```
 
 ## Explanation
@@ -210,7 +222,7 @@ Explanation
 
 |
 
-Confirms the current working directory.
+Confirms the current working directory on the remote Linux server.
 
 |
 |
@@ -246,7 +258,7 @@ Reads the same file by escaping each space.
 
 |
 
-Closes the current SSH session.
+Closes the current SSH session and returns to Windows Command Prompt or PowerShell.
 
 |
 |
@@ -261,41 +273,16 @@ Connects to Bandit Level 3 using SSH.
 
 ## Why Quotes Are Required
 
-|
-Command
-
-|
-
-Result
-
-|
-| --- | --- |
-|
-
-`cat --spaces in this filename--`
-
-|
-
-Treats `--spaces`, `in`, `this`, and `filename--` as separate arguments and fails.
-
-|
-|
-
-`cat "./--spaces in this filename--"`
-
-|
-
-Reads the complete filename successfully.
-
-|
+<table class="_6IUVGW_Table" data-d-column-sizing="auto" data-d-dividers="" style="table-layout: auto;"><tbody><tr data-d-component="table-row"><td data-d-component="table-cell" data-d-has-width="" data-d-valign="start"><p class="w6asjq_TextBase _85PZeG_Text" data-d-component="text"><span class="w6asjq_TextBase _85PZeG_Text" data-d-component="text" data-d-default-strong="" data-d-inline="">Command</span></p></td><td data-d-component="table-cell" data-d-valign="start"><p class="w6asjq_TextBase _85PZeG_Text" data-d-component="text"><span class="w6asjq_TextBase _85PZeG_Text" data-d-component="text" data-d-default-strong="" data-d-inline="">Result</span></p></td></tr><tr data-d-component="table-row"><td data-d-component="table-cell" data-d-valign="start"><p class="w6asjq_TextBase _85PZeG_Text" data-d-component="text" data-d-whitespace="preserve">cat --spaces in this filename--</p></td><td data-d-component="table-cell" data-d-valign="start"><p class="w6asjq_TextBase _85PZeG_Text" data-d-component="text">Treats <code class="er4J8W_Code" data-d-component="code">--spaces</code>, <code class="er4J8W_Code" data-d-component="code">in</code>, <code class="er4J8W_Code" data-d-component="code">this</code>, and <code class="er4J8W_Code" data-d-component="code">filename--</code> as separate arguments and fails.</p></td></tr><tr data-d-component="table-row"><td data-d-component="table-cell" data-d-valign="start"><p class="w6asjq_TextBase _85PZeG_Text" data-d-component="text" data-d-whitespace="preserve">cat "./--spaces in this filename--"</p></td><td data-d-component="table-cell" data-d-valign="start">Reads the complete filename successfully.</td></tr></tbody></table>
 
 Quotes prevent the shell from splitting the filename at spaces.
 
 ## Terminal Output (Example)
 
-Bash
-
 ```
+C:\Users\YourUsername> ssh bandit2@bandit.labs.overthewire.org -p 2220
+bandit2@bandit.labs.overthewire.org's password:
+
 bandit2@bandit:~$ pwd
 /home/bandit2
 
@@ -309,8 +296,9 @@ bandit2@bandit:~$ exit
 logout
 Connection to bandit.labs.overthewire.org closed.
 
-user@ubuntu:~$ ssh bandit3@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername> ssh bandit3@bandit.labs.overthewire.org -p 2220
 bandit3@bandit.labs.overthewire.org's password:
+
 bandit3@bandit:~$
 ```
 
@@ -324,10 +312,10 @@ bandit3@bandit:~$
 
 * Retrieved the password for Bandit Level 3.
 
-* Logged into bandit3 using SSH from the Linux terminal.
+* Logged into bandit3 using SSH from Windows Command Prompt / PowerShell.
 
 ## Result
 
-Successfully accessed the file `--spaces in this filename--`, obtained the Bandit Level 3 password, and logged into the bandit3 account using the Linux terminal.
+Successfully accessed the file `--spaces in this filename--`, obtained the Bandit Level 3 password, and logged into the bandit3 account using Windows Command Prompt / PowerShell.
 
-<img width="641" height="316" alt="image" src="https://github.com/user-attachments/assets/707aefd1-457b-4fac-82a3-935c9daf6660" />
+<img width="1232" height="167" alt="image" src="https://github.com/user-attachments/assets/92fa683c-0d03-43e0-960a-b5f0bff43d9a" />
