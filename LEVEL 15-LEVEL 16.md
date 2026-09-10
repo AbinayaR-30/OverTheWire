@@ -208,3 +208,4 @@ they are part of the TLS protocol and **can be ignored**. The important step is 
 ## Result
 
 Successfully connected to **localhost:30001** using **SSL/TLS**, submitted the **Bandit Level 15** password, obtained the **Bandit Level 16** password **`kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx`**, and logged into the **bandit16** account.
+<img width="379" height="132" alt="image" src="https://github.com/user-attachments/assets/4e34a786-1620-41d0-b5bf-e94269fa364b" />
