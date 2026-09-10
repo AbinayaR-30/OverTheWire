@@ -106,7 +106,7 @@ cat ./maybehere07/.file2
 **Output**
 
 ```text
-morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+<next level password>
 ```
 
 This is the password for **bandit6**.
@@ -184,6 +184,6 @@ ssh bandit6@bandit.labs.overthewire.org -p 2220
 
 ## Result
 
-Successfully located the file **`./maybehere07/.file2`**, obtained the **Bandit Level 6** password `morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj`, and logged into the **bandit6** account.
+Successfully located the file **`./maybehere07/.file2`**, obtained the **Bandit Level 6** password `<next level password>`, and logged into the **bandit6** account.
 <img width="538" height="132" alt="image" src="https://github.com/user-attachments/assets/05e694fa-7916-4237-8ce0-83c75c77c08d" />
 
