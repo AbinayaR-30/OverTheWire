@@ -1,78 +1,57 @@
+# SSH Login Format for Bandit (Windows Command Prompt / PowerShell)
 
-# SSH Login Format for Bandit (Linux Terminal)
+Use this login command for all Bandit levels. Only change the level number and password.
 
 ## Level 0 Login
 
-Open the Linux terminal and connect using:
+Step 1: Open Command Prompt or PowerShell.
 
-Bash
+Step 2: Connect to Bandit Level 0.
 
-```
-user@ubuntu:~$ ssh bandit0@bandit.labs.overthewire.org -p 2220
-```
+ssh [bandit0@bandit.labs.overthewire.org](mailto:bandit0@bandit.labs.overthewire.org) -p 2220
 
-Password
+Step 3: Enter the password.
 
-```
 bandit0
-```
 
-Successful Login Prompt
+Successful Login
 
-Bash
-
-```
 bandit0@bandit:~$
-```
 
 ## Levels 1 to 33 Login
 
-For every subsequent Bandit level, use the same SSH command by replacing `n` with the level number.
+For every level, replace `n` with the Bandit level number.
 
-Syntax
+Login Command
 
-Bash
+ssh [banditn@bandit.labs.overthewire.org](mailto:banditn@bandit.labs.overthewire.org) -p 2220
 
-```
-user@ubuntu:~$ ssh banditn@bandit.labs.overthewire.org -p 2220
-```
+Examples
 
-Where `n` = 1 to 33.
+ssh [bandit1@bandit.labs.overthewire.org](mailto:bandit1@bandit.labs.overthewire.org) -p 2220 ssh [bandit5@bandit.labs.overthewire.org](mailto:bandit5@bandit.labs.overthewire.org) -p 2220 ssh [bandit16@bandit.labs.overthewire.org](mailto:bandit16@bandit.labs.overthewire.org) -p 2220 ssh [bandit33@bandit.labs.overthewire.org](mailto:bandit33@bandit.labs.overthewire.org) -p 2220
 
-### Examples
+After entering the correct password, you will see:
 
-Bash
-
-```
-user@ubuntu:~$ ssh bandit1@bandit.labs.overthewire.org -p 2220
-```
-
-Bash
-
-```
-user@ubuntu:~$ ssh bandit5@bandit.labs.overthewire.org -p 2220
-```
-
-Bash
-
-```
-user@ubuntu:~$ ssh bandit16@bandit.labs.overthewire.org -p 2220
-```
-
-Bash
-
-```
-user@ubuntu:~$ ssh bandit33@bandit.labs.overthewire.org -p 2220
-```
-
-After entering the correct password for that level, you will see:
-
-Bash
-
-```
 banditn@bandit:~$
-```
 
-where `n` is the level you logged into.
+`n` is the Bandit level you logged into.
 
-> Use this SSH format for all Bandit levels (1–33) in your Linux-based walkthroughs.
+## Commands Used
+
+ssh [banditn@bandit.labs.overthewire.org](mailto:banditn@bandit.labs.overthewire.org) -p 2220
+
+Connects to the Bandit server on port 2220.
+
+## Concept Learnt
+
+SSH (Secure Shell) is used to securely connect to the Bandit server. Every Bandit level uses the same SSH command; only the username and password change.
+
+## Takeaways
+
+* Use the same SSH command for every Bandit level.
+
+* Replace `n` with the required level number.
+
+* Always include `-p 2220` because Bandit uses port 2220.
+
+* Enter the password obtained from the previous level.
