@@ -1,201 +1,67 @@
-# WHAT IS SSH?
+# Bandit Level 0 → Level 1
 
-SSH (Secure Shell) is a cryptographic network protocol used to securely connect to remote systems over unsecured networks.
+## Walkthrough
 
-It provides encrypted communication, authentication, and data integrity, making it the standard protocol for remote server administration, file transfers, and secure tunneling.
+Step 1: Open Command Prompt or PowerShell.
 
-SSH operates over TCP port 22 by default, but servers can use custom ports (such as Bandit's 2220). It replaces older insecure protocols like Telnet and rsh by encrypting all transmitted data, preventing eavesdropping and man-in-the-middle attacks.
-
-# Bandit Level 0 – Login using SSH (Windows Command Prompt / PowerShell)
-
-## Level Goal
-
-The objective of Level 0 is to connect to the OverTheWire Bandit server using SSH (Secure Shell). This is the starting point of the Bandit wargame.
-
-* Host: `bandit.labs.overthewire.org`
-
-* Port: `2220`
-
-* Username: `bandit0`
-
-* Password: `bandit0`
-
-After logging in successfully, you will be connected to the Linux server and can begin solving the next level.
-
-## Concept Learned
-
-### What is SSH?
-
-SSH (Secure Shell) is a secure network protocol used to remotely access another computer over an encrypted connection. It allows you to execute Linux commands on a remote machine from your own Windows Command Prompt or PowerShell.
-
-### SSH Syntax
-
-PowerShell
-
-```
-ssh username@hostname -p port_number
-```
-
-Where:
-
-* `ssh` → Starts an SSH connection.
-
-* `username@hostname` → User account and server address.
-
-* `-p` → Specifies a custom port number.
-
-## Walkthrough (Windows Command Prompt / PowerShell)
-
-### Step 1 – Open Command Prompt or PowerShell
-
-Open Command Prompt or Windows PowerShell.
-
-A terminal window will open with a prompt similar to:
-
-cmd
-
-```
-C:\Users\YourUsername>
-```
-
-### Step 2 – Connect to the Bandit Server
-
-Type the following command:
-
-PowerShell
-
-```
-C:\Users\YourUsername> ssh bandit0@bandit.labs.overthewire.org -p 2220
-```
-
-Press Enter.
-
-### Step 3 – Accept the Server Fingerprint
-
-The first time you connect, Windows will display a message similar to:
-
-```
-The authenticity of host 'bandit.labs.overthewire.org (176.9.9.172)' can't be established.
-ED25519 key fingerprint is SHA256:...
-Are you sure you want to continue connecting (yes/no/[fingerprint])?
-```
-
-Type:
-
-```
-yes
-```
-
-Press Enter.
-
-This stores the server's fingerprint in the known_hosts file so future connections can be verified automatically.
-
-### Step 4 – Enter the Password
-
-You will see:
-
-```
-bandit0@bandit.labs.overthewire.org's password:
-```
-
-Type:
-
-```
-bandit0
-```
-
-> Note: Nothing appears on the screen while typing the password—not even dots or asterisks. This is normal behavior in Windows Command Prompt and PowerShell.
-
-Press Enter.
-
-### Step 5 – Successful Login
-
-If the login is successful, you will see the Bandit welcome message and a Linux prompt similar to:
-
-Bash
-
-```
-bandit0@bandit:~$
-```
-
-You are now logged into the remote Linux machine from your Windows computer.
-
-## Verify Your Login
-
-Run a simple command:
-
-Bash
-
-```
-bandit0@bandit:~$ pwd
-```
-
-Output
-
-```
-/home/bandit0
-```
-
-This confirms that you are inside the bandit0 home directory on the remote Linux server.
-
-You can also list the files in the current directory:
-
-Bash
-
-```
-bandit0@bandit:~$ ls
-```
-
-Output
-
-```
-readme
-```
-
-This file contains the password for Bandit Level 1, which will be solved in the next walkthrough.
-
-## Commands Used in This Level
-
-|
-Windows Command
-
-|
-
-Purpose
-
-|
-| --- | --- |
-|
+Step 2: Connect to the Bandit server.
 
 ssh [bandit0@bandit.labs.overthewire.org](mailto:bandit0@bandit.labs.overthewire.org) -p 2220
 
-| Connects to the Bandit server using SSH. |
-|
+Step 3: If asked to verify the server, type:
+
+yes
+
+<img width="905" height="332" alt="image" src="https://github.com/user-attachments/assets/231ab545-da9d-4594-ab9d-623b6dc978c0" />
+
+
+Step 4: Enter the password.
+
+bandit0
+
+Step 5: Check the current directory.
 
 pwd
 
-| Displays the current working directory on the remote Bandit server. |
-|
+Output:
+
+/home/bandit0
+
+Step 6: List the files.
 
 ls
 
-| Lists files in the current directory on the remote Bandit server. |
+Output:
 
-## Key Takeaways
+readme
 
-* Learned how to use SSH from Windows Command Prompt or PowerShell to connect to a remote Linux server.
+## Commands Used
 
-* Connected to the Bandit server using a custom SSH port (2220).
+ssh [bandit0@bandit.labs.overthewire.org](mailto:bandit0@bandit.labs.overthewire.org) -p 2220
 
-* Accepted the server fingerprint on the first connection.
+Connects to the Bandit server using SSH on port 2220.
 
-* Logged into the Bandit Linux environment successfully from Windows.
+pwd
 
-* Verified the current directory using `pwd`.
+Shows the current working directory.
 
-* Listed files in the home directory using `ls`.
+ls
 
-## Result
+Lists files in the current directory.
 
-Successfully logged into Bandit Level 0 using Windows Command Prompt / PowerShell and reached the Linux home directory `/home/bandit0`, ready to continue to Bandit Level 1.
+## Concept Learnt
+
+SSH (Secure Shell) is a secure protocol used to connect to a remote Linux server from Windows. The `-p` option specifies the custom port number (2220 for Bandit).
+
+## Takeaways
+
+* SSH is used to connect to a remote Linux server securely.
+
+* Type `yes` only during the first connection.
+
+* Passwords are hidden while typing.
+
+* `pwd` shows your current directory.
+
+* `ls` lists files in the current directory.
 
