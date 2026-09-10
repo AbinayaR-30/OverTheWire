@@ -213,3 +213,4 @@ The Bandit server runs on **port 2220**, not port 22. <Cite ref={["turn0reddit10
 ## Result
 
 Successfully used `sshkey.private` to log into **bandit14**, read the password from `/etc/bandit_pass/bandit14`, obtained the **Bandit Level 14** password **`4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e`**, and logged into the **bandit14** account.
+<img width="984" height="736" alt="image" src="https://github.com/user-attachments/assets/15f0c513-c7f8-49d7-af02-34c5b09d3fed" />
