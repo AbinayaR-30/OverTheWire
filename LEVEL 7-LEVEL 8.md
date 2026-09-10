@@ -70,7 +70,7 @@ grep "millionth" data.txt
 **Output**
 
 ```text
-millionth cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+millionth <next level password>
 ```
 
 The text after **millionth** is the password.
@@ -80,7 +80,7 @@ The text after **millionth** is the password.
 ### Step 4 – Password for Bandit Level 8
 
 ```text
-cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+<next level password>
 ```
 
 This is the password for **bandit8**.
@@ -155,5 +155,5 @@ ssh bandit8@bandit.labs.overthewire.org -p 2220
 
 ## Result
 
-Successfully searched `data.txt` with `grep`, found the password next to **millionth**, obtained the **Bandit Level 8** password `cvX2JJa4CFALtqS87jk27qwqGhBM9plV`, and logged into the **bandit8** account.
+Successfully searched `data.txt` with `grep`, found the password next to **millionth**, obtained the **Bandit Level 8** password `<next level password>`, and logged into the **bandit8** account.
 <img width="528" height="133" alt="image" src="https://github.com/user-attachments/assets/c0de502b-3f23-4929-8569-e83d5c2d12b3" />
