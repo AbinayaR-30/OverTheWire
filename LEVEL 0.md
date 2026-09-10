@@ -198,5 +198,4 @@ ls
 ## Result
 
 Successfully logged into Bandit Level 0 using Windows Command Prompt / PowerShell and reached the Linux home directory `/home/bandit0`, ready to continue to Bandit Level 1.
-<img width="1072" height="435" alt="image" src="https://github.com/user-attachments/assets/aaf3a36b-42f4-4687-beb9-a85d413aaf47" />
 
