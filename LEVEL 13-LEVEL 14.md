@@ -1,61 +1,102 @@
-# Bandit Level 13 → Level 14
+# Bandit Level 13 → Level 14 (Linux Terminal)
 
 ## Level Goal
 
-The password for **Bandit Level 14** is stored in **`/etc/bandit_pass/bandit14`**, but it can only be read by the **bandit14** user.
+The password for Bandit Level 14 is stored in `/etc/bandit_pass/bandit14`, but it can only be read by the bandit14 user.
 
-Unlike previous levels, **Bandit Level 13 does not give you a password**. Instead, it provides a **private SSH key (`sshkey.private`)** that must be used to log in as `bandit14`. <Cite ref={["turn0search0","turn0search3"]}/>
-
----
+Unlike previous levels, Bandit Level 13 does not give you a password. Instead, it provides a private SSH key (`sshkey.private`) that must be used to log in as `bandit14`.
 
 ## Concept Learned
 
-This level introduces **SSH Key Authentication**.
+This level introduces SSH Key Authentication.
 
-* A **private SSH key** can authenticate a user without entering a password.
-* The **`-i`** option in the `ssh` command specifies which private key to use.
-* The key provided in `sshkey.private` belongs to **bandit14**, so it allows access to that account. <Cite ref={["turn0search0","turn0search3"]}/>
+* A private SSH key can authenticate a user without entering a password.
+
+* The `-i` option in the `ssh` command specifies which private key to use.
+
+* The key provided in `sshkey.private` belongs to bandit14, so it allows access to that account.
 
 ### Commands Used
 
-| Command  | Purpose                                             |
-| -------- | --------------------------------------------------- |
-| `ls`     | Lists files in the current directory.               |
-| `cat`    | Displays the private key (optional).                |
-| `ssh -i` | Uses a private SSH key to log into another account. |
-| `exit`   | Exits the SSH session.                              |
+|
+Linux Command
 
----
+|
 
-## Walkthrough (Windows Command Prompt)
+Purpose
+
+|
+| --- | --- |
+|
+
+`ls`
+
+|
+
+Lists files in the current directory.
+
+|
+|
+
+`cat sshkey.private`
+
+|
+
+Displays the private key (optional).
+
+|
+|
+
+`ssh -i`
+
+|
+
+Uses a private SSH key to log into another account.
+
+|
+|
+
+`exit`
+
+|
+
+Exits the SSH session.
+
+|
+
+## Walkthrough (Linux Terminal)
 
 ### Step 1 – Verify the Private Key Exists
 
-After logging into **bandit13**, list the files.
+After logging into bandit13, list the files in the home directory.
 
-```bash
-ls
+Bash
+
+```
+bandit13@bandit:~$ ls
 ```
 
-**Output**
+Output
 
-```text
+```
 sshkey.private
 ```
 
 The home directory contains the private SSH key needed for the next login.
 
----
-
 ### Step 2 – (Optional) View the Private Key
 
-```bash
-cat sshkey.private
+You can verify that the file is an RSA private key.
+
+Bash
+
+```
+bandit13@bandit:~$ cat sshkey.private
 ```
 
-**Output (Beginning of File)**
+Output (Beginning of File)
 
-```text
+```
 -----BEGIN RSA PRIVATE KEY-----
 ...
 -----END RSA PRIVATE KEY-----
@@ -63,154 +104,314 @@ cat sshkey.private
 
 This confirms that `sshkey.private` is an RSA private key.
 
----
+> Note: You do not need to copy or edit this key. It is used directly by the `ssh` command.
 
 ### Step 3 – Log in as `bandit14` Using the Private Key
 
-Run the SSH command with the **`-i`** option.
+Run the SSH command with the `-i` option.
 
-```bash
-ssh -i sshkey.private -p 2220 bandit14@localhost
+Bash
+
+```
+bandit13@bandit:~$ ssh -i sshkey.private -p 2220 bandit14@localhost
 ```
 
 ### Explanation of the Command
 
-| Part                 | Meaning                                               |
-| -------------------- | ----------------------------------------------------- |
-| `ssh`                | Starts an SSH connection.                             |
-| `-i sshkey.private`  | Uses `sshkey.private` as the authentication key.      |
-| `-p 2220`            | Connects using Bandit's SSH port.                     |
-| `bandit14@localhost` | Logs into the `bandit14` account on the same machine. |
+|
+Command Part
 
-> **Note:** If asked to trust the host fingerprint, type `yes` and press **Enter**.
+|
 
-**Successful Login Prompt**
+Meaning
 
-```text
+|
+| --- | --- |
+|
+
+`ssh`
+
+|
+
+Starts an SSH connection.
+
+|
+|
+
+`-i sshkey.private`
+
+|
+
+Uses `sshkey.private` as the authentication key.
+
+|
+|
+
+`-p 2220`
+
+|
+
+Connects using Bandit's SSH port.
+
+|
+|
+
+`bandit14@localhost`
+
+|
+
+Logs into the `bandit14` account on the same Bandit server.
+
+|
+
+> Note: If SSH asks whether you trust the host fingerprint, type `yes` and press Enter.
+
+Successful Login Prompt
+
+Bash
+
+```
 bandit14@bandit:~$
 ```
 
----
+You are now logged into the bandit14 account.
 
 ### Step 4 – Read the Password File
 
-Now that you are logged in as **bandit14**, read the password file.
+Now that you are logged in as bandit14, read the protected password file.
 
-```bash
-cat /etc/bandit_pass/bandit14
+Bash
+
+```
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
 ```
 
-**Output**
+Output
 
-```text
+```
 <next level password>
 ```
 
-This is the password for **Bandit Level 14**. <Cite ref={["turn0search3","turn0search8"]}/>
+This is the password for Bandit Level 14.
 
----
+### Step 5 – Exit the SSH Sessions
 
-### Step 5 – Exit the Session
+Exit from the `bandit14` session.
 
-```bash
-exit
+Bash
+
+```
+bandit14@bandit:~$ exit
+```
+
+Output
+
+```
+logout
+Connection to localhost closed.
 ```
 
 You will return to the `bandit13` session.
 
-Exit once more if you want to return to your local Command Prompt.
+Exit once more to return to your local Linux terminal.
 
-```bash
-exit
+Bash
+
+```
+bandit13@bandit:~$ exit
 ```
 
----
+Output
 
-### Step 6 – Log into Bandit Level 14 from Windows
-
-```cmd
-ssh bandit14@bandit.labs.overthewire.org -p 2220
+```
+logout
+Connection to bandit.labs.overthewire.org closed.
 ```
 
-When prompted, enter the password:
+### Step 6 – Log into Bandit Level 14
 
-```text
-<next level password>
+From your local Linux terminal, log into bandit14 using the password you just obtained.
+
+Bash
+
+```
+user@ubuntu:~$ ssh bandit14@bandit.labs.overthewire.org -p 2220
 ```
 
-**Successful Login Prompt**
+Password Prompt
 
-```text
+```
+bandit14@bandit.labs.overthewire.org's password:
+```
+
+Enter the password obtained from `/etc/bandit_pass/bandit14`.
+
+Successful Login Prompt
+
+Bash
+
+```
 bandit14@bandit:~$
 ```
 
----
+You are now logged into Bandit Level 14.
 
 ## Complete Command Sequence
 
-```bash
-ls
-ssh -i sshkey.private -p 2220 bandit14@localhost
-cat /etc/bandit_pass/bandit14
-exit
-exit
+Bash
+
 ```
+bandit13@bandit:~$ ls
+bandit13@bandit:~$ ssh -i sshkey.private -p 2220 bandit14@localhost
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+bandit14@bandit:~$ exit
+bandit13@bandit:~$ exit
 
-Then from Windows Command Prompt:
-
-```cmd
-ssh bandit14@bandit.labs.overthewire.org -p 2220
+user@ubuntu:~$ ssh bandit14@bandit.labs.overthewire.org -p 2220
 ```
-
----
 
 ## Explanation
 
-* `ls` confirms the presence of `sshkey.private`.
-* `ssh -i` authenticates using the private key instead of a password.
-* `cat /etc/bandit_pass/bandit14` reads the password that only `bandit14` can access.
-* `exit` closes the SSH sessions and returns to your local terminal.
+|
+Command
 
----
+|
 
-## Common Error and Fix (2026 Update)
+Explanation
+
+|
+| --- | --- |
+|
+
+`ls`
+
+|
+
+Confirms the presence of `sshkey.private`.
+
+|
+|
+
+`cat sshkey.private`
+
+|
+
+Displays the private key (optional verification).
+
+|
+|
+
+`ssh -i sshkey.private -p 2220 bandit14@localhost`
+
+|
+
+Authenticates as `bandit14` using the private SSH key.
+
+|
+|
+
+`cat /etc/bandit_pass/bandit14`
+
+|
+
+Reads the password file that only `bandit14` can access.
+
+|
+|
+
+`exit`
+
+|
+
+Closes the SSH sessions and returns to the previous terminal.
+
+|
+|
+
+`ssh bandit14@bandit.labs.overthewire.org -p 2220`
+
+|
+
+Logs into Bandit Level 14 using the recovered password.
+
+|
+
+## Common Error and Fix
+
+### Error
 
 If you run:
 
-```bash
-ssh -i sshkey.private bandit14@localhost
+Bash
+
+```
+bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost
 ```
 
-and get:
+You may get:
 
-```text
+```
 Permission denied (publickey).
 !!! You are trying to log into this SSH server on port 22...
 ```
 
-**Reason:** SSH defaults to **port 22**.
+### Reason
 
-**Correct command:**
+SSH connects to port 22 by default, but the Bandit server uses port 2220.
 
-```bash
-ssh -i sshkey.private -p 2220 bandit14@localhost
+### Correct Command
+
+Bash
+
+```
+bandit13@bandit:~$ ssh -i sshkey.private -p 2220 bandit14@localhost
 ```
 
-The Bandit server runs on **port 2220**, not port 22. <Cite ref={["turn0reddit10","turn0reddit15"]}/>
+Always include `-p 2220` when connecting to Bandit.
 
----
+## Terminal Output (Example)
+
+Bash
+
+```
+bandit13@bandit:~$ ls
+sshkey.private
+
+bandit13@bandit:~$ ssh -i sshkey.private -p 2220 bandit14@localhost
+bandit14@bandit:~$
+
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+<next level password>
+
+bandit14@bandit:~$ exit
+logout
+Connection to localhost closed.
+
+bandit13@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+
+user@ubuntu:~$ ssh bandit14@bandit.labs.overthewire.org -p 2220
+bandit14@bandit.labs.overthewire.org's password:
+bandit14@bandit:~$
+```
 
 ## Key Takeaways
 
-* Learned how **SSH key authentication** works.
-* Used the **`-i`** option to authenticate with a private key.
-* Logged into another Linux user without using a password.
-* Accessed a protected file in `/etc/bandit_pass`.
-* Retrieved the password for **Bandit Level 14**.
+* Learned how SSH Key Authentication works.
 
----
+* Used the `-i` option to authenticate with a private SSH key.
+
+* Logged into another Linux user without entering a password.
+
+* Accessed a protected file in `/etc/bandit_pass`.
+
+* Retrieved the password for Bandit Level 14.
+
+* Understood why port 2220 must be specified when connecting to Bandit.
 
 ## Result
 
-Successfully used `sshkey.private` to log into **bandit14**, read the password from `/etc/bandit_pass/bandit14`, obtained the **Bandit Level 14** password **`<next level password>`**, and logged into the **bandit14** account.
+Successfully used `sshkey.private` to log into bandit14, read the password from `/etc/bandit_pass/bandit14`, obtained the Bandit Level 14 password, and logged into the bandit14 account using the Linux terminal.
+
 <img width="984" height="736" alt="image" src="https://github.com/user-attachments/assets/15f0c513-c7f8-49d7-af02-34c5b09d3fed" />
