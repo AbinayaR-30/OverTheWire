@@ -1,211 +1,431 @@
-# Bandit Level 15 → Level 16
+# Bandit Level 15 → Level 16 (Linux Terminal)
 
 ## Level Goal
 
-The password for **Bandit Level 16** can be retrieved by submitting the **Bandit Level 15 password** to **port `30001` on `localhost`** using **SSL/TLS encryption**.
+The password for Bandit Level 16 can be retrieved by submitting the Bandit Level 15 password to port `30001` on `localhost` using SSL/TLS encryption.
 
-Unlike Level 14, a normal `nc` connection will not work because the service expects an **encrypted SSL/TLS connection**.
-
----
+Unlike Level 14, a normal `nc` connection will not work because the service expects an encrypted SSL/TLS connection.
 
 ## Concept Learned
 
-This level introduces **OpenSSL's `s_client`** command.
+This level introduces OpenSSL's `s_client` command.
 
-* **SSL/TLS** encrypts communication between a client and a server.
-* **`openssl s_client`** creates a secure TLS connection to a server.
+* SSL/TLS encrypts communication between a client and a server.
+
+* `openssl s_client` creates a secure TLS connection to a server.
+
 * After the secure connection is established, you send the password and receive the next level's password.
 
 ### Commands Used
 
-| Command            | Purpose                                  |
-| ------------------ | ---------------------------------------- |
-| `cat`              | Displays the current level password.     |
-| `openssl s_client` | Creates an SSL/TLS encrypted connection. |
-| `ssh`              | Logs into the next Bandit level.         |
+|
+Linux Command
 
----
+|
 
-## Walkthrough (Windows Command Prompt)
+Purpose
 
-### Step 1 – Log into Bandit15
+|
+| --- | --- |
+|
 
-From your Windows Command Prompt:
+`cat`
 
-```cmd
-ssh bandit15@bandit.labs.overthewire.org -p 2220
+|
+
+Displays the current level password.
+
+|
+|
+
+`openssl s_client`
+
+|
+
+Creates an SSL/TLS encrypted connection.
+
+|
+|
+
+`Ctrl + C`
+
+|
+
+Closes the SSL/TLS connection.
+
+|
+|
+
+`exit`
+
+|
+
+Closes the SSH session.
+
+|
+|
+
+`ssh`
+
+|
+
+Logs into the next Bandit level.
+
+|
+
+## Walkthrough (Linux Terminal)
+
+### Step 1 – Log into Bandit Level 15
+
+From your Linux terminal, connect to bandit15.
+
+Bash
+
+```
+user@ubuntu:~$ ssh bandit15@bandit.labs.overthewire.org -p 2220
 ```
 
-Enter the **Bandit Level 15 password**:
+Password Prompt
 
-```text
-<next level password>
+```
+bandit15@bandit.labs.overthewire.org's password:
 ```
 
-**Successful Login Prompt**
+Enter the Bandit Level 15 password.
 
-```text
+Successful Login Prompt
+
+Bash
+
+```
 bandit15@bandit:~$
 ```
 
----
-
 ### Step 2 – Verify the Current Password (Optional)
 
-```bash
-cat /etc/bandit_pass/bandit15
+Display the current level password.
+
+Bash
+
+```
+bandit15@bandit:~$ cat /etc/bandit_pass/bandit15
 ```
 
-**Output**
+Output
 
-```text
+```
 <next level password>
 ```
 
----
+This is the password that must be submitted to the SSL/TLS service.
 
 ### Step 3 – Connect to Port 30001 Using SSL/TLS
 
 Run the following command:
 
-```bash
-openssl s_client -connect localhost:30001 -quiet
+Bash
+
+```
+bandit15@bandit:~$ openssl s_client -connect localhost:30001 -quiet
 ```
 
 ### Explanation of the Command
 
-| Part                       | Meaning                                                   |
-| -------------------------- | --------------------------------------------------------- |
-| `openssl`                  | OpenSSL command-line tool.                                |
-| `s_client`                 | Starts an SSL/TLS client connection.                      |
-| `-connect localhost:30001` | Connects securely to port **30001**.                      |
-| `-quiet`                   | Hides certificate details and shows only the interaction. |
+|
+Command Part
 
-After running the command, the terminal waits for input.
+|
 
----
+Meaning
+
+|
+| --- | --- |
+|
+
+`openssl`
+
+|
+
+OpenSSL command-line tool.
+
+|
+|
+
+`s_client`
+
+|
+
+Starts an SSL/TLS client connection.
+
+|
+|
+
+`-connect localhost:30001`
+
+|
+
+Connects securely to port 30001.
+
+|
+|
+
+`-quiet`
+
+|
+
+Hides certificate information and shows only the interaction.
+
+|
+
+After running the command, the terminal waits for your input.
 
 ### Step 4 – Submit the Password
 
-Paste the **Bandit Level 15 password** and press **Enter**.
+Paste the Bandit Level 15 password and press Enter.
 
-```text
+```
 <next level password>
 ```
 
-**Output**
+Output
 
-```text
+```
 Correct!
 <next level password>
 ```
 
-The second line is the password for **Bandit Level 16**.
+* `Correct!` confirms the password is valid.
 
----
+* The second line is the password for Bandit Level 16.
 
 ### Step 5 – Password for Bandit Level 16
 
-```text
+```
 <next level password>
 ```
 
-This is the password for **bandit16**.
+Copy this password carefully. It will be used to log into bandit16.
 
----
+### Step 6 – Exit the SSL/TLS Connection
 
-### Step 6 – Exit the SSL Connection
+After receiving the password, close the OpenSSL connection by pressing:
 
-Press:
-
-```text
+```
 Ctrl + C
 ```
 
-to close the OpenSSL connection.
+This returns you to the Bandit terminal prompt.
 
----
+Bash
 
-### Step 7 – Log into Bandit16
-
-```cmd
-ssh bandit16@bandit.labs.overthewire.org -p 2220
+```
+bandit15@bandit:~$
 ```
 
-Enter the password obtained above:
+### Step 7 – Exit the SSH Session
 
-```text
-kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+Exit the current Bandit session.
+
+Bash
+
+```
+bandit15@bandit:~$ exit
 ```
 
-**Successful Login Prompt**
+Output
 
-```text
+```
+logout
+Connection to bandit.labs.overthewire.org closed.
+```
+
+### Step 8 – Log into Bandit Level 16
+
+From your local Linux terminal, connect to the next level.
+
+Bash
+
+```
+user@ubuntu:~$ ssh bandit16@bandit.labs.overthewire.org -p 2220
+```
+
+Password Prompt
+
+```
+bandit16@bandit.labs.overthewire.org's password:
+```
+
+Enter the password obtained from the SSL/TLS service.
+
+Successful Login Prompt
+
+Bash
+
+```
 bandit16@bandit:~$
 ```
 
----
+You are now logged into Bandit Level 16.
 
 ## Complete Command Sequence
 
-```bash
-cat /etc/bandit_pass/bandit15
-openssl s_client -connect localhost:30001 -quiet
+Bash
+
+```
+bandit15@bandit:~$ cat /etc/bandit_pass/bandit15
+
+bandit15@bandit:~$ openssl s_client -connect localhost:30001 -quiet
 # Paste the password and press Enter
 # Press Ctrl + C after receiving the response
-exit
+
+bandit15@bandit:~$ exit
+
+user@ubuntu:~$ ssh bandit16@bandit.labs.overthewire.org -p 2220
 ```
-
-Then from Windows Command Prompt:
-
-```cmd
-ssh bandit16@bandit.labs.overthewire.org -p 2220
-```
-
----
 
 ## Explanation
 
-* `openssl s_client` creates a secure SSL/TLS connection.
-* The server waits for the current level password.
-* After the password is submitted, the server returns the password for **Bandit Level 16**.
-* `ssh` is then used to log into **bandit16**.
+|
+Command
 
----
+|
+
+Explanation
+
+|
+| --- | --- |
+|
+
+`cat /etc/bandit_pass/bandit15`
+
+|
+
+Reads the current level password.
+
+|
+|
+
+`openssl s_client -connect localhost:30001 -quiet`
+
+|
+
+Creates a secure SSL/TLS connection to the service.
+
+|
+|
+
+`Ctrl + C`
+
+|
+
+Terminates the SSL/TLS connection after receiving the response.
+
+|
+|
+
+`exit`
+
+|
+
+Closes the current SSH session.
+
+|
+|
+
+`ssh bandit16@bandit.labs.overthewire.org -p 2220`
+
+|
+
+Connects to Bandit Level 16 using SSH.
+
+|
 
 ## Why `nc` Does Not Work Here
 
-| Command                                            | Result                                                                        |
-| -------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `nc localhost 30001`                               | Connection opens, but communication fails because TLS encryption is required. |
-| `openssl s_client -connect localhost:30001 -quiet` | Establishes a secure encrypted connection and returns the password.           |
+|
+Command
 
----
+|
+
+Result
+
+|
+| --- | --- |
+|
+
+`nc localhost 30001`
+
+|
+
+Opens a TCP connection, but communication fails because the service requires TLS encryption.
+
+|
+|
+
+`openssl s_client -connect localhost:30001 -quiet`
+
+|
+
+Establishes a secure encrypted connection and returns the password.
+
+|
+
+The service on port 30001 accepts only SSL/TLS-encrypted connections.
 
 ## Common Output Messages
 
-If you see messages like:
+When connecting with OpenSSL, you may see messages like:
 
-```text
+```
 DONE
 RENEGOTIATING
 KEYUPDATE
 ```
 
-they are part of the TLS protocol and **can be ignored**. The important step is to paste the password after the connection is established.
+These are part of the TLS protocol and can be ignored. The important step is to paste the password after the secure connection is established.
 
----
+## Terminal Output (Example)
+
+Bash
+
+```
+user@ubuntu:~$ ssh bandit15@bandit.labs.overthewire.org -p 2220
+bandit15@bandit.labs.overthewire.org's password:
+bandit15@bandit:~$
+
+bandit15@bandit:~$ cat /etc/bandit_pass/bandit15
+<current level password>
+
+bandit15@bandit:~$ openssl s_client -connect localhost:30001 -quiet
+<current level password>
+Correct!
+<next level password>
+
+^C
+
+bandit15@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+
+user@ubuntu:~$ ssh bandit16@bandit.labs.overthewire.org -p 2220
+bandit16@bandit.labs.overthewire.org's password:
+bandit16@bandit:~$
+```
 
 ## Key Takeaways
 
-* Learned how to use **`openssl s_client`** for SSL/TLS connections.
-* Understood the difference between a normal TCP connection (`nc`) and an encrypted TLS connection.
-* Submitted the current level password over an encrypted channel.
-* Retrieved the password for **Bandit Level 16**.
+* Learned how to use `openssl s_client` to create an SSL/TLS connection.
 
----
+* Understood the difference between a normal TCP connection (`nc`) and an encrypted TLS connection.
+
+* Submitted the current Bandit password over an encrypted channel.
+
+* Retrieved the password for Bandit Level 16.
+
+* Logged into bandit16 using SSH from the Linux terminal.
 
 ## Result
 
-Successfully connected to **localhost:30001** using **SSL/TLS**, submitted the **Bandit Level 15** password, obtained the **Bandit Level 16** password **`<next level password>`**, and logged into the **bandit16** account.
+Successfully connected to `localhost:30001` using SSL/TLS, submitted the Bandit Level 15 password, obtained the Bandit Level 16 password, and logged into the bandit16 account using the Linux terminal.
+
 <img width="379" height="132" alt="image" src="https://github.com/user-attachments/assets/4e34a786-1620-41d0-b5bf-e94269fa364b" />
