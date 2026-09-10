@@ -186,3 +186,5 @@ ssh bandit12@bandit.labs.overthewire.org -p 2220
 ## Result
 
 Successfully decoded the ROT13 text in `data.txt`, obtained the **Bandit Level 12** password `7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4`, and logged into the **bandit12** account.
+<img width="940" height="205" alt="image" src="https://github.com/user-attachments/assets/05cd8743-a39b-44b9-8b6f-fea0ecb46f6f" />
+
