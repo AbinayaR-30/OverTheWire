@@ -1,10 +1,10 @@
-# Bandit Level 4 → Level 5 (Linux Terminal)
+# Bandit Level 4 → Level 5 (Windows Command Prompt / PowerShell)
 
 ## Level Goal
 
 The password for Bandit Level 5 is stored in the only human-readable file inside the `inhere` directory.
 
-The challenge is to identify a human-readable file among several files containing binary or non-readable data.
+The challenge is to identify a human-readable file among several files containing binary or non-readable data while connected to the remote Linux server from Windows Command Prompt or PowerShell.
 
 ## Concept Learned
 
@@ -13,7 +13,7 @@ Linux provides the `file` command to identify the type of a file. Instead of ope
 ### Commands Used
 
 |
-Linux Command
+Command
 
 |
 
@@ -85,11 +85,11 @@ Logs into the next Bandit level.
 
 |
 
-## Walkthrough (Linux Terminal)
+## Walkthrough (Windows Command Prompt / PowerShell)
 
 ### Step 1 – Verify Your Current Directory
 
-After logging into bandit4, check your current location.
+After logging into bandit4 from Windows Command Prompt or PowerShell, check your current location on the remote server.
 
 Bash
 
@@ -221,7 +221,7 @@ Output
 
 This is the password for bandit5.
 
-### Step 7 – Exit the Current Session
+### Step 7 – Exit the Current SSH Session
 
 Bash
 
@@ -236,14 +236,24 @@ logout
 Connection to bandit.labs.overthewire.org closed.
 ```
 
-### Step 8 – Log into Bandit Level 5
+You will return to your Windows Command Prompt or PowerShell prompt.
 
-From your Linux terminal, connect to the next level.
+Example:
 
-Bash
+cmd
 
 ```
-user@ubuntu:~$ ssh bandit5@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername>
+```
+
+### Step 8 – Log into Bandit Level 5
+
+From Windows Command Prompt or PowerShell, connect to the next Bandit level.
+
+PowerShell
+
+```
+C:\Users\YourUsername> ssh bandit5@bandit.labs.overthewire.org -p 2220
 ```
 
 Password Prompt
@@ -266,17 +276,19 @@ You are now logged into Bandit Level 5.
 
 ## Complete Command Sequence
 
-Bash
+PowerShell
 
 ```
-bandit4@bandit:~$ pwd
-bandit4@bandit:~$ ls
-bandit4@bandit:~$ cd inhere
-bandit4@bandit:~/inhere$ file ./*
-bandit4@bandit:~/inhere$ cat ./file03
-bandit4@bandit:~/inhere$ exit
+# Inside the Bandit server
+pwd
+ls
+cd inhere
+file ./*
+cat ./file03
+exit
 
-user@ubuntu:~$ ssh bandit5@bandit.labs.overthewire.org -p 2220
+# Back in Windows Command Prompt / PowerShell
+ssh bandit5@bandit.labs.overthewire.org -p 2220
 ```
 
 ## Explanation
@@ -296,7 +308,7 @@ Explanation
 
 |
 
-Confirms the current working directory.
+Confirms the current working directory on the remote Linux server.
 
 |
 |
@@ -341,7 +353,7 @@ Displays the contents of the human-readable file.
 
 |
 
-Closes the current SSH session.
+Closes the current SSH session and returns to Windows Command Prompt or PowerShell.
 
 |
 |
@@ -397,9 +409,10 @@ The `file` command is useful when you do not know the contents or format of a fi
 
 ## Terminal Output (Example)
 
-Bash
-
 ```
+C:\Users\YourUsername> ssh bandit4@bandit.labs.overthewire.org -p 2220
+bandit4@bandit.labs.overthewire.org's password:
+
 bandit4@bandit:~$ pwd
 /home/bandit4
 
@@ -431,8 +444,9 @@ bandit4@bandit:~/inhere$ exit
 logout
 Connection to bandit.labs.overthewire.org closed.
 
-user@ubuntu:~$ ssh bandit5@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername> ssh bandit5@bandit.labs.overthewire.org -p 2220
 bandit5@bandit.labs.overthewire.org's password:
+
 bandit5@bandit:~$
 ```
 
@@ -448,10 +462,8 @@ bandit5@bandit:~$
 
 * Retrieved the password for Bandit Level 5.
 
-* Logged into bandit5 using SSH from the Linux terminal.
+* Logged into bandit5 using SSH from Windows Command Prompt / PowerShell.
 
 ## Result
 
-Successfully identified the only human-readable (ASCII text) file in the `inhere` directory, obtained the Bandit Level 5 password, and logged into the bandit5 account using the Linux terminal.
-
-<img width="762" height="514" alt="image" src="https://github.com/user-attachments/assets/8853c7ae-1bb1-489f-8154-fda91252c7b0" />
+Successfully identified the only human-readable (ASCII text) file in the `inhere` directory, obtained the Bandit Level 5 password, and logged into the bandit5 account using Windows Command Prompt / PowerShell.
