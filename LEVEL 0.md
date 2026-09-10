@@ -6,7 +6,7 @@ It provides encrypted communication, authentication, and data integrity, making 
 
 SSH operates over TCP port 22 by default, but servers can use custom ports (such as Bandit's 2220). It replaces older insecure protocols like Telnet and rsh by encrypting all transmitted data, preventing eavesdropping and man-in-the-middle attacks.
 
-# Bandit Level 0 – Login using SSH (Linux Terminal)
+# Bandit Level 0 – Login using SSH (Windows Command Prompt / PowerShell)
 
 ## Level Goal
 
@@ -26,11 +26,11 @@ After logging in successfully, you will be connected to the Linux server and can
 
 ### What is SSH?
 
-SSH (Secure Shell) is a secure network protocol used to remotely access another computer over an encrypted connection. It allows you to execute Linux commands on a remote machine from your own Linux terminal.
+SSH (Secure Shell) is a secure network protocol used to remotely access another computer over an encrypted connection. It allows you to execute Linux commands on a remote machine from your own Windows Command Prompt or PowerShell.
 
 ### SSH Syntax
 
-Bash
+PowerShell
 
 ```
 ssh username@hostname -p port_number
@@ -44,35 +44,35 @@ Where:
 
 * `-p` → Specifies a custom port number.
 
-## Walkthrough (Linux Terminal)
+## Walkthrough (Windows Command Prompt / PowerShell)
 
-### Step 1 – Open the Linux Terminal
+### Step 1 – Open Command Prompt or PowerShell
 
-Open your Linux terminal using Ctrl + Alt + T (or open the Terminal application from the applications menu).
+Open Command Prompt or Windows PowerShell.
 
 A terminal window will open with a prompt similar to:
 
-Bash
+cmd
 
 ```
-user@ubuntu:~$
+C:\Users\YourUsername>
 ```
 
 ### Step 2 – Connect to the Bandit Server
 
 Type the following command:
 
-Bash
+PowerShell
 
 ```
-user@ubuntu:~$ ssh bandit0@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername> ssh bandit0@bandit.labs.overthewire.org -p 2220
 ```
 
 Press Enter.
 
 ### Step 3 – Accept the Server Fingerprint
 
-The first time you connect, Linux will display a message similar to:
+The first time you connect, Windows will display a message similar to:
 
 ```
 The authenticity of host 'bandit.labs.overthewire.org (176.9.9.172)' can't be established.
@@ -81,8 +81,6 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
 Type:
-
-Bash
 
 ```
 yes
@@ -102,13 +100,11 @@ bandit0@bandit.labs.overthewire.org's password:
 
 Type:
 
-Bash
-
 ```
 bandit0
 ```
 
-> Note: Nothing appears on the screen while typing the password—not even dots or asterisks. This is normal behavior in Linux terminals.
+> Note: Nothing appears on the screen while typing the password—not even dots or asterisks. This is normal behavior in Windows Command Prompt and PowerShell.
 
 Press Enter.
 
@@ -122,7 +118,7 @@ Bash
 bandit0@bandit:~$
 ```
 
-You are now logged into the remote Linux machine.
+You are now logged into the remote Linux machine from your Windows computer.
 
 ## Verify Your Login
 
@@ -140,7 +136,7 @@ Output
 /home/bandit0
 ```
 
-This confirms that you are inside the bandit0 home directory.
+This confirms that you are inside the bandit0 home directory on the remote Linux server.
 
 You can also list the files in the current directory:
 
@@ -161,7 +157,7 @@ This file contains the password for Bandit Level 1, which will be solved in the 
 ## Commands Used in This Level
 
 |
-Linux Command
+Windows Command
 
 |
 
@@ -178,22 +174,22 @@ ssh [bandit0@bandit.labs.overthewire.org](mailto:bandit0@bandit.labs.overthewire
 
 pwd
 
-| Displays the current working directory. |
+| Displays the current working directory on the remote Bandit server. |
 |
 
 ls
 
-| Lists files in the current directory. |
+| Lists files in the current directory on the remote Bandit server. |
 
 ## Key Takeaways
 
-* Learned how to use SSH to connect to a remote Linux server.
+* Learned how to use SSH from Windows Command Prompt or PowerShell to connect to a remote Linux server.
 
 * Connected to the Bandit server using a custom SSH port (2220).
 
 * Accepted the server fingerprint on the first connection.
 
-* Logged into the Bandit Linux environment successfully.
+* Logged into the Bandit Linux environment successfully from Windows.
 
 * Verified the current directory using `pwd`.
 
@@ -201,4 +197,6 @@ ls
 
 ## Result
 
-Successfully logged into Bandit Level 0 using the Linux Terminal and reached the Linux home directory `/home/bandit0`, ready to continue to Bandit Level 1.
+Successfully logged into Bandit Level 0 using Windows Command Prompt / PowerShell and reached the Linux home directory `/home/bandit0`, ready to continue to Bandit Level 1.
+<img width="1072" height="435" alt="image" src="https://github.com/user-attachments/assets/aaf3a36b-42f4-4687-beb9-a85d413aaf47" />
+
