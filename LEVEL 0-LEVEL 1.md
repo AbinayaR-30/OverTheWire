@@ -150,3 +150,5 @@ ssh bandit1@bandit.labs.overthewire.org -p 2220
 ## Result
 
 Successfully obtained the **Bandit Level 1** password from the `readme` file and logged into the **bandit1** account.
+<img width="972" height="252" alt="image" src="https://github.com/user-attachments/assets/4d4039a8-2f6c-4086-8188-8fefd1a8c81d" />
+
