@@ -150,3 +150,5 @@ Adding `./` removes the ambiguity and treats `-` as a filename.
 ## Result
 
 Successfully accessed the file named `-`, obtained the **Bandit Level 2** password, and logged into the **bandit2** account.
+<img width="471" height="102" alt="image" src="https://github.com/user-attachments/assets/3f719d46-c0fb-4cdd-8307-be8c8b4676c7" />
+
