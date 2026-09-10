@@ -145,6 +145,7 @@ readme
 ```
 
 This file contains the password for **Level 1**, which will be solved in the next walkthrough.
+<img width="1146" height="280" alt="image" src="https://github.com/user-attachments/assets/d3f6701c-615a-43c6-b35b-55fd363e904c" />
 
 ---
 
@@ -171,3 +172,4 @@ This file contains the password for **Level 1**, which will be solved in the nex
 ## Result
 
 Successfully logged into **Bandit Level 0** using Windows Command Prompt and reached the Linux home directory `/home/bandit0`, ready to continue to **Level 1**.
+
