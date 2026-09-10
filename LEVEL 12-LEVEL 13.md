@@ -348,7 +348,7 @@ cat data8
 **Output**
 
 ```text
-The password is gDtCV3zbQRqkl7b3rgQiAAA9fYuydxMZ
+The password is <next level password>
 ```
 
 ---
@@ -356,7 +356,7 @@ The password is gDtCV3zbQRqkl7b3rgQiAAA9fYuydxMZ
 ### Step 7 – Password for Bandit Level 13
 
 ```text
-gDtCV3zbQRqkl7b3rgQiAAA9fYuydxMZ
+<next level password>
 ```
 
 This is the password for **bandit13**.
@@ -464,6 +464,6 @@ Checking the file type after each extraction ensures you always know the next de
 
 ## Result
 
-Successfully reconstructed and decompressed the hexdump file, obtained the **Bandit Level 13** password **`gDtCV3zbQRqkl7b3rgQiAAA9fYuydxMZ`**, and logged into the **bandit13** account.
+Successfully reconstructed and decompressed the hexdump file, obtained the **Bandit Level 13** password **`<next level password>`**, and logged into the **bandit13** account.
 
 <img width="657" height="187" alt="image" src="https://github.com/user-attachments/assets/d416591a-626f-4a64-8e6b-77ff3c078b15" />
