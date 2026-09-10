@@ -467,6 +467,7 @@ bandit4@bandit:~$
 ## Result
 
 Successfully found the hidden file `...Hiding-From-You`, obtained the Bandit Level 4 password, and logged into the bandit4 account using Windows Command Prompt / PowerShell.
+
 <img width="309" height="58" alt="image" src="https://github.com/user-attachments/assets/1fe91cd0-e476-4b00-a3d7-9abe424ee8d7" />
 <img width="538" height="57" alt="image" src="https://github.com/user-attachments/assets/770fcff6-7ff9-4ee2-a31c-b4ff1db99250" />
 <img width="1029" height="138" alt="image" src="https://github.com/user-attachments/assets/4121563d-aad4-4260-a702-9cb593979fa7" />
