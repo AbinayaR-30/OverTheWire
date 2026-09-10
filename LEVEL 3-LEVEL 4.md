@@ -201,3 +201,5 @@ ssh bandit4@bandit.labs.overthewire.org -p 2220
 
 
 Successfully found the hidden file **`...Hiding-From-You`**, obtained the **Bandit Level 4** password, and logged into the **bandit4** account.
+<img width="454" height="256" alt="image" src="https://github.com/user-attachments/assets/54c7e2e9-2119-4c63-97ab-a3dd3c202540" />
+
