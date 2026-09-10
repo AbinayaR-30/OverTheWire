@@ -1,318 +1,87 @@
-# Bandit Level 7 → Level 8 (Linux Terminal)
+# Bandit Level 7 → Level 8
 
-## Level Goal
+## Walkthrough
 
-The password for Bandit Level 8 is stored in the file `data.txt`, next to the word `millionth`.
+Step 1: Verify your current directory.
 
-The challenge is to search for a specific word inside a text file using the `grep` command.
-
-## Concept Learned
-
-The `grep` command searches for a word or pattern inside a file and prints the matching line. It is one of the most commonly used Linux text-processing commands for searching text in files.
-
-### Commands Used
-
-|
-Linux Command
-
-|
-
-Purpose
-
-|
-| --- | --- |
-|
-
-`pwd`
-
-|
-
-Shows the current working directory.
-
-|
-|
-
-`ls`
-
-|
-
-Lists files in the current directory.
-
-|
-|
-
-`grep`
-
-|
-
-Searches for a specific word inside a file.
-
-|
-|
-
-`exit`
-
-|
-
-Closes the current SSH session.
-
-|
-|
-
-`ssh`
-
-|
-
-Logs into the next Bandit level.
-
-|
-
-## Walkthrough (Linux Terminal)
-
-### Step 1 – Verify Your Current Directory
-
-After logging into bandit7, check your current location.
-
-Bash
-
-```
-bandit7@bandit:~$ pwd
-```
+pwd
 
 Output
 
-```
 /home/bandit7
-```
 
-This confirms that you are inside the bandit7 home directory.
+This confirms you are in the `bandit7` home directory.
 
-### Step 2 – List Files
+Step 2: List the files in the current directory.
 
-Display the files in the current directory.
-
-Bash
-
-```
-bandit7@bandit:~$ ls
-```
+ls
 
 Output
 
-```
 data.txt
-```
+
+<img width="321" height="54" alt="image" src="https://github.com/user-attachments/assets/698163ce-5d7a-48fe-8354-a0008de4f6c9" />
+
 
 The password is stored somewhere inside `data.txt`.
 
-### Step 3 – Search for the Word `millionth`
+Step 3: Search for the word `millionth` in the file.
 
-Use `grep` to search for the word millionth inside the file.
-
-Bash
-
-```
-bandit7@bandit:~$ grep "millionth" data.txt
-```
+grep "millionth" data.txt
 
 Output
 
-```
-millionth <next level password>
-```
+millionth <Bandit Level 8 Password>
 
-The text after `millionth` is the password for the next Bandit level.
+<img width="679" height="55" alt="image" src="https://github.com/user-attachments/assets/28b3717c-dfbd-47cd-be46-f9250c4e7809" />
 
-> Note: `grep` prints the entire line that contains the matching word.
 
-### Step 4 – Password for Bandit Level 8
+The text after `millionth` is the password for bandit8.
 
-```
-<next level password>
-```
+Step 4: Exit the current SSH session.
 
-Copy this password carefully. It will be used to log into bandit8.
+exit
 
-### Step 5 – Exit the Current Session
+This returns you to Windows Command Prompt or PowerShell.
 
-Bash
+Step 5: Log in to bandit8.
 
-```
-bandit7@bandit:~$ exit
-```
+ssh [bandit8@bandit.labs.overthewire.org](mailto:bandit8@bandit.labs.overthewire.org) -p 2220
 
-Output
+When prompted, paste the password from Step 3.
 
-```
-logout
-Connection to bandit.labs.overthewire.org closed.
-```
+## Commands Used
 
-### Step 6 – Log into Bandit Level 8
+pwd
 
-From your Linux terminal, connect to the next level.
+Shows the current working directory.
 
-Bash
-
-```
-user@ubuntu:~$ ssh bandit8@bandit.labs.overthewire.org -p 2220
-```
-
-Password Prompt
-
-```
-bandit8@bandit.labs.overthewire.org's password:
-```
-
-Enter the password obtained from `data.txt`.
-
-Successful Login Prompt
-
-Bash
-
-```
-bandit8@bandit:~$
-```
-
-You are now logged into Bandit Level 8.
-
-## Complete Command Sequence
-
-Bash
-
-```
-bandit7@bandit:~$ pwd
-bandit7@bandit:~$ ls
-bandit7@bandit:~$ grep "millionth" data.txt
-bandit7@bandit:~$ exit
-
-user@ubuntu:~$ ssh bandit8@bandit.labs.overthewire.org -p 2220
-```
-
-## Explanation
-
-|
-Command
-
-|
-
-Explanation
-
-|
-| --- | --- |
-|
-
-`pwd`
-
-|
-
-Confirms the current working directory.
-
-|
-|
-
-`ls`
-
-|
+ls
 
 Lists files in the current directory.
 
-|
-|
-
-`grep "millionth" data.txt`
-
-|
+grep "millionth" data.txt
 
 Searches `data.txt` for the word millionth and prints the matching line.
 
-|
-|
-
-`exit`
-
-|
+exit
 
 Closes the current SSH session.
 
-|
-|
+ssh [bandit8@bandit.labs.overthewire.org](mailto:bandit8@bandit.labs.overthewire.org) -p 2220
 
-`ssh bandit8@bandit.labs.overthewire.org -p 2220`
+Logs into Bandit Level 8.
 
-|
+## Concept Learnt
 
-Connects to Bandit Level 8 using SSH.
+The `grep` command searches for a word or pattern inside a file and prints only the matching line. It is useful for finding specific information in large text files without reading the entire file.
 
-|
+## Takeaways
 
-## Why Use `grep`?
+* `grep` searches for text inside files.
 
-|
-Command
+* It prints only the lines that contain the matching word.
 
-|
+* `grep "millionth" data.txt` quickly finds the password.
 
-Result
-
-|
-| --- | --- |
-|
-
-`cat data.txt`
-
-|
-
-Displays the entire file, which contains many lines.
-
-|
-|
-
-`grep "millionth" data.txt`
-
-|
-
-Displays only the line containing millionth.
-
-|
-
-The `grep` command makes searching large text files quick and efficient.
-
-## Terminal Output (Example)
-
-Bash
-
-```
-bandit7@bandit:~$ pwd
-/home/bandit7
-
-bandit7@bandit:~$ ls
-data.txt
-
-bandit7@bandit:~$ grep "millionth" data.txt
-millionth <Bandit Level 8 Password>
-
-bandit7@bandit:~$ exit
-logout
-Connection to bandit.labs.overthewire.org closed.
-
-user@ubuntu:~$ ssh bandit8@bandit.labs.overthewire.org -p 2220
-bandit8@bandit.labs.overthewire.org's password:
-bandit8@bandit:~$
-```
-
-## Key Takeaways
-
-* Learned how to search for text inside a file using the `grep` command.
-
-* Used `grep` to find a specific line instead of viewing the entire file.
-
-* Retrieved the password for Bandit Level 8 from `data.txt`.
-
-* Logged into bandit8 using SSH from the Linux terminal.
-
-## Result
-
-Successfully searched `data.txt` with `grep`, found the password next to `millionth`, obtained the Bandit Level 8 password, and logged into the bandit8 account using the Linux terminal.
-
-<img width="528" height="133" alt="image" src="https://github.com/user-attachments/assets/c0de502b-3f23-4929-8569-e83d5c2d12b3" />
+* Use the retrieved password to log in to the next Bandit level.
