@@ -177,3 +177,5 @@ The `-d` option stands for **decode**.
 ## Result
 
 Successfully decoded the Base64 data in `data.txt`, obtained the **Bandit Level 11** password `dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr`, and logged into the **bandit11** account.
+<img width="726" height="164" alt="image" src="https://github.com/user-attachments/assets/40e7dfa4-2afc-487c-8af7-4c143ac54a73" />
+
