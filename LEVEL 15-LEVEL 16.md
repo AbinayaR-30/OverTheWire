@@ -39,7 +39,7 @@ ssh bandit15@bandit.labs.overthewire.org -p 2220
 Enter the **Bandit Level 15 password**:
 
 ```text
-cluFn7wTiGryunymYOu4RcffSxQluehd
+<next level password>
 ```
 
 **Successful Login Prompt**
@@ -59,7 +59,7 @@ cat /etc/bandit_pass/bandit15
 **Output**
 
 ```text
-cluFn7wTiGryunymYOu4RcffSxQluehd
+<next level password>
 ```
 
 ---
@@ -90,14 +90,14 @@ After running the command, the terminal waits for input.
 Paste the **Bandit Level 15 password** and press **Enter**.
 
 ```text
-cluFn7wTiGryunymYOu4RcffSxQluehd
+<next level password>
 ```
 
 **Output**
 
 ```text
 Correct!
-kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+<next level password>
 ```
 
 The second line is the password for **Bandit Level 16**.
@@ -107,7 +107,7 @@ The second line is the password for **Bandit Level 16**.
 ### Step 5 – Password for Bandit Level 16
 
 ```text
-kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+<next level password>
 ```
 
 This is the password for **bandit16**.
@@ -207,5 +207,5 @@ they are part of the TLS protocol and **can be ignored**. The important step is 
 
 ## Result
 
-Successfully connected to **localhost:30001** using **SSL/TLS**, submitted the **Bandit Level 15** password, obtained the **Bandit Level 16** password **`kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx`**, and logged into the **bandit16** account.
+Successfully connected to **localhost:30001** using **SSL/TLS**, submitted the **Bandit Level 15** password, obtained the **Bandit Level 16** password **`<next level password>`**, and logged into the **bandit16** account.
 <img width="379" height="132" alt="image" src="https://github.com/user-attachments/assets/4e34a786-1620-41d0-b5bf-e94269fa364b" />
