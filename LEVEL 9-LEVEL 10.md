@@ -83,7 +83,7 @@ strings data.txt | grep "=="
 **Output**
 
 ```text
-========== B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+========== <next level password>
 ```
 
 The text after the `=` characters is the password.
