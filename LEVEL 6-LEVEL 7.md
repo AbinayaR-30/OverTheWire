@@ -162,3 +162,5 @@ Searching from `/` accesses many protected directories.
 ## Result
 
 Successfully located **`/var/lib/dpkg/info/bandit7.password`**, obtained the **Bandit Level 7** password `<level 7 password>`, and logged into the **bandit7** account.
+
+<img width="847" height="281" alt="image" src="https://github.com/user-attachments/assets/28968ddf-34c8-414e-b739-ecd4ff2e92a6" />
