@@ -91,7 +91,7 @@ base64 -d data.txt
 **Output**
 
 ```text
-The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+The password is <next level password>
 ```
 
 The decoded text contains the password.
@@ -101,7 +101,7 @@ The decoded text contains the password.
 ### Step 5 – Password for Bandit Level 11
 
 ```text
-dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+<next level password>
 ```
 
 This is the password for **bandit11**.
@@ -176,6 +176,6 @@ The `-d` option stands for **decode**.
 
 ## Result
 
-Successfully decoded the Base64 data in `data.txt`, obtained the **Bandit Level 11** password `dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr`, and logged into the **bandit11** account.
+Successfully decoded the Base64 data in `data.txt`, obtained the **Bandit Level 11** password `<next level password>`, and logged into the **bandit11** account.
 <img width="726" height="164" alt="image" src="https://github.com/user-attachments/assets/40e7dfa4-2afc-487c-8af7-4c143ac54a73" />
 
