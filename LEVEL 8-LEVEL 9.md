@@ -1,295 +1,97 @@
-# Bandit Level 8 → Level 9 (Linux Terminal)
+# Bandit Level 8 → Level 9
 
-## Level Goal
+## Walkthrough
 
-The password for Bandit Level 9 is stored in the file `data.txt` and is the only line that appears exactly once.
+Step 1: Verify your current directory.
 
-The challenge is to use `sort` and `uniq` together through a pipe (`|`) to find the unique line.
-
-## Concept Learned
-
-This level introduces piping (`|`), which sends the output of one command as the input to another command.
-
-* `sort` arranges all lines in alphabetical order.
-
-* `uniq` removes or filters duplicate lines.
-
-* `uniq -u` prints only lines that occur exactly once.
-
-### Commands Used
-
-| Linux Command | Purpose | |---------------|---------| | `pwd` | Shows the current working directory. | | `ls` | Lists files in the current directory. | | `sort` | Sorts the contents of a file alphabetically. | | `uniq -u` | Displays only unique (non-repeated) lines. | | `|` (pipe) | Sends output from one command to another. | | `exit` | Closes the current SSH session. | | `ssh` | Logs into the next Bandit level. |
-
-## Walkthrough (Linux Terminal)
-
-### Step 1 – Verify Your Current Directory
-
-After logging into bandit8, check your current location.
-
-Bash
-
-```
-bandit8@bandit:~$ pwd
-```
+pwd
 
 Output
 
-```
 /home/bandit8
-```
 
-This confirms that you are inside the bandit8 home directory.
+This confirms you are in the `bandit8` home directory.
 
-### Step 2 – List Files
+Step 2: List the files in the current directory.
 
-Display the files in the current directory.
-
-Bash
-
-```
-bandit8@bandit:~$ ls
-```
+ls
 
 Output
 
-```
 data.txt
-```
 
-The password is hidden among many repeated lines inside `data.txt`.
+<img width="685" height="72" alt="image" src="https://github.com/user-attachments/assets/a92901ae-7049-45be-8b7e-8b00da485c01" />
 
-### Step 3 – Find the Only Unique Line
 
-Run the following command:
+The password is hidden among many repeated lines in `data.txt`.
 
-Bash
+Step 3: Find the only line that appears exactly once.
 
-```
-bandit8@bandit:~$ sort data.txt | uniq -u
-```
-
-### Explanation of the Command
-
-| Command Part | Meaning | |--------------|---------| | `sort data.txt` | Sorts all lines in `data.txt` alphabetically. | | `|` | Sends the sorted output to the next command. | | `uniq -u` | Prints only the line that appears exactly once. |
+sort data.txt | uniq -u
 
 Output
 
-```
 <Bandit Level 9 Password>
-```
 
-This unique line is the password for bandit9.
+<img width="1115" height="95" alt="image" src="https://github.com/user-attachments/assets/39e85688-d39f-4f91-9e35-f38e38dc624f" />
 
-### Step 4 – Password for Bandit Level 9
 
-```
-UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
-```
+The unique line is the password for bandit9.
 
-Copy this password carefully. It will be used to log into bandit9.
+Step 4: Exit the current SSH session.
 
-### Step 5 – Exit the Current Session
+exit
 
-Bash
+This returns you to Windows Command Prompt or PowerShell.
 
-```
-bandit8@bandit:~$ exit
-```
+Step 5: Log in to bandit9.
 
-Output
+ssh [bandit9@bandit.labs.overthewire.org](mailto:bandit9@bandit.labs.overthewire.org) -p 2220
 
-```
-logout
-Connection to bandit.labs.overthewire.org closed.
-```
+When prompted, paste the password from Step 3.
 
-### Step 6 – Log into Bandit Level 9
+## Commands Used
 
-From your Linux terminal, connect to the next level.
+pwd
 
-Bash
+Shows the current working directory.
 
-```
-user@ubuntu:~$ ssh bandit9@bandit.labs.overthewire.org -p 2220
-```
-
-Password Prompt
-
-```
-bandit9@bandit.labs.overthewire.org's password:
-```
-
-Enter the password obtained from the unique line.
-
-Successful Login Prompt
-
-Bash
-
-```
-bandit9@bandit:~$
-```
-
-You are now logged into Bandit Level 9.
-
-## Complete Command Sequence
-
-Bash
-
-```
-bandit8@bandit:~$ pwd
-bandit8@bandit:~$ ls
-bandit8@bandit:~$ sort data.txt | uniq -u
-bandit8@bandit:~$ exit
-
-user@ubuntu:~$ ssh bandit9@bandit.labs.overthewire.org -p 2220
-```
-
-## Explanation
-
-|
-Command
-
-|
-
-Explanation
-
-|
-| --- | --- |
-|
-
-`pwd`
-
-|
-
-Confirms the current working directory.
-
-|
-|
-
-`ls`
-
-|
+ls
 
 Lists files in the current directory.
 
-|
-|
+sort data.txt
 
-`sort data.txt`
+Sorts all lines in the file alphabetically.
 
-|
+uniq -u
 
-Sorts all lines alphabetically so duplicates are grouped together.
+Prints only the lines that appear exactly once.
 
-|
-|
+| (pipe)
 
-`uniq -u`
+Sends the output of one command as the input to another command.
 
-|
-
-Displays only the line that appears exactly once.
-
-|
-|
-
-`sort data.txt \| uniq -u`
-
-|
-
-Combines both commands using a pipe to find the unique line.
-
-|
-|
-
-`exit`
-
-|
+exit
 
 Closes the current SSH session.
 
-|
-|
+ssh [bandit9@bandit.labs.overthewire.org](mailto:bandit9@bandit.labs.overthewire.org) -p 2220
 
-`ssh bandit9@bandit.labs.overthewire.org -p 2220`
+Logs into Bandit Level 9.
 
-|
+## Concept Learnt
 
-Connects to Bandit Level 9 using SSH.
+A pipe (`|`) connects two commands together. Here, `sort` groups identical lines together, and `uniq -u` prints only the line that occurs exactly once. `uniq` works correctly only when duplicate lines are adjacent, so sorting is required first.
 
-|
+## Takeaways
 
-## Why `sort` Is Required Before `uniq`
+* `sort` arranges lines alphabetically.
 
-`uniq` only compares adjacent lines. If duplicate lines are scattered throughout the file, it cannot identify them correctly.
+* `|` passes the output of one command to another.
 
-|
-Command
+* `uniq -u` finds lines that appear only once.
 
-|
+* Always use `sort` before `uniq` when duplicates are scattered in a file.
 
-Result
-
-|
-| --- | --- |
-|
-
-`uniq -u data.txt`
-
-|
-
-May not work correctly because duplicate lines are not next to each other.
-
-|
-|
-
-`sort data.txt \| uniq -u`
-
-|
-
-Groups duplicate lines together, allowing `uniq` to identify the single unique line.
-
-|
-
-So, sorting is an essential first step before using `uniq`.
-
-## Terminal Output (Example)
-
-Bash
-
-```
-bandit8@bandit:~$ pwd
-/home/bandit8
-
-bandit8@bandit:~$ ls
-data.txt
-
-bandit8@bandit:~$ sort data.txt | uniq -u
-UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
-
-bandit8@bandit:~$ exit
-logout
-Connection to bandit.labs.overthewire.org closed.
-
-user@ubuntu:~$ ssh bandit9@bandit.labs.overthewire.org -p 2220
-bandit9@bandit.labs.overthewire.org's password:
-bandit9@bandit:~$
-```
-
-## Key Takeaways
-
-* Learned how to use pipes (`|`) in Linux.
-
-* Combined `sort` and `uniq -u` to process text efficiently.
-
-* Understood that `uniq` works only on adjacent duplicate lines.
-
-* Retrieved the password for Bandit Level 9 from the unique line.
-
-* Logged into bandit9 using SSH from the Linux terminal.
-
-## Result
-
-Successfully found the only unique line in `data.txt`, obtained the Bandit Level 9 password, and logged into the bandit9 account using the Linux terminal.
-
-<img width="447" height="130" alt="image" src="https://github.com/user-attachments/assets/c6d3a3fe-ca29-44bc-aa2b-a5cd2bc82e5b" />
+* Use the unique line as the password for the next Bandit level.
