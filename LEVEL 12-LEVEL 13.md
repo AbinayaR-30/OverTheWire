@@ -465,3 +465,5 @@ Checking the file type after each extraction ensures you always know the next de
 ## Result
 
 Successfully reconstructed and decompressed the hexdump file, obtained the **Bandit Level 13** password **`gDtCV3zbQRqkl7b3rgQiAAA9fYuydxMZ`**, and logged into the **bandit13** account.
+
+<img width="657" height="187" alt="image" src="https://github.com/user-attachments/assets/d416591a-626f-4a64-8e6b-77ff3c078b15" />
