@@ -53,23 +53,23 @@ Step 6: Decompress the files in the correct order.
 
 1. Gzip
 
-mv data.bin data.gz gzip -d data.gz
+**mv data.bin data.gz gzip -d data.gz**
 
 2. Bzip2
 
-mv data data.bz2 bzip2 -d data.bz2
+**mv data data.bz2 bzip2 -d data.bz2**
 
 3. Gzip
 
-mv data data.gz gzip -d data.gz
+**mv data data.gz gzip -d data.gz**
 
 4. Tar
 
-mv data data.tar tar -xf data.tar
+**mv data data.tar tar -xf data.tar**
 
 5. Tar
 
-mv data5.bin data5.tar tar -xf data5.tar
+**mv data5.bin data5.tar tar -xf data5.tar**
 
 6. Bzip2
 
@@ -77,27 +77,27 @@ mv data6.bin data6.bz2 bzip2 -d data6.bz2
 
 7. Tar
 
-mv data6 data6.tar tar -xf data6.tar
+**mv data6 data6.tar tar -xf data6.tar**
 
 8. Gzip
 
-mv data8.bin data8.gz gzip -d data8.gz
+**mv data8.bin data8.gz gzip -d data8.gz**
 
 The final file becomes ASCII text.
 
 Step 7: Read the final file.
 
-cat data8
+**cat data8**
 
 Output
 
-The password is <Bandit Level 13 Password>
+**The password is <Bandit Level 13 Password>**
 
 Copy this password. You will use it to log in to bandit13.
 
 Step 8: Remove the temporary directory and exit.
 
-cd rm -r /tmp/tmp.X4A1b2C3d4 exit
+**cd rm -r /tmp/tmp.X4A1b2C3d4 exit**
 
 This cleans up the temporary files and returns you to Windows Command Prompt or PowerShell.
 
