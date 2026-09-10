@@ -169,3 +169,5 @@ ssh bandit10@bandit.labs.overthewire.org -p 2220
 ## Result
 
 Successfully extracted the readable string from `data.txt`, obtained the **Bandit Level 10** password `<lvl 10 password>`, and logged into the **bandit10** account.
+<img width="456" height="143" alt="image" src="https://github.com/user-attachments/assets/e97ec14e-4e05-44d4-8d07-7c3f54e949a4" />
+
