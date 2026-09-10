@@ -1,4 +1,4 @@
-# Bandit Level 5 → Level 6 (Linux Terminal)
+# Bandit Level 5 → Level 6 
 
 ## Level Goal
 
@@ -6,96 +6,17 @@ The password for Bandit Level 6 is stored in a file somewhere inside the `inhere
 
 * Human-readable
 
-* Exactly 1033 bytes in size.
+* Exactly 1033 bytes in size
 
 * Not executable
 
-The challenge is to use the `find` command with multiple conditions to locate a specific file.
+The challenge is to use the `find` command with multiple conditions to locate a specific file while connected to the remote Linux server from Windows Command Prompt or PowerShell.
 
-## Concept Learned
-
-The `find` command searches for files and directories based on conditions such as size, type, permissions, and name. Instead of checking every file manually, `find` filters and returns only files that match the given criteria.
-
-### Commands Used
-
-|
-Linux Command
-
-|
-
-Purpose
-
-|
-| --- | --- |
-|
-
-`pwd`
-
-|
-
-Shows the current working directory.
-
-|
-|
-
-`ls`
-
-|
-
-Lists files and directories.
-
-|
-|
-
-`cd`
-
-|
-
-Changes into the `inhere` directory.
-
-|
-|
-
-`find`
-
-|
-
-Searches for files matching specific properties.
-
-|
-|
-
-`cat`
-
-|
-
-Displays the contents of the located file.
-
-|
-|
-
-`exit`
-
-|
-
-Closes the current SSH session.
-
-|
-|
-
-`ssh`
-
-|
-
-Logs into the next Bandit level.
-
-|
-
-## Walkthrough (Linux Terminal)
+## Walkthrough (Windows Command Prompt / PowerShell)
 
 ### Step 1 – Verify Your Current Directory
 
-After logging into bandit5, check your current location.
+After logging into bandit5 from Windows Command Prompt or PowerShell, check your current location on the remote server.
 
 Bash
 
@@ -120,6 +41,9 @@ Bash
 ```
 bandit5@bandit:~$ ls
 ```
+
+<img width="357" height="69" alt="image" src="https://github.com/user-attachments/assets/317330d7-a686-4143-855e-f1361541d8a5" />
+
 
 Output
 
@@ -225,15 +149,18 @@ Bash
 bandit5@bandit:~/inhere$ cat ./maybehere07/.file2
 ```
 
+<img width="682" height="61" alt="image" src="https://github.com/user-attachments/assets/49b1095f-7b0d-42e4-8121-986e39b6b476" />
+
+
 Output
 
 ```
-<next level password>
+<Bandit Level 6 Password>
 ```
 
 This is the password for bandit6.
 
-### Step 5 – Exit the Current Session
+### Step 5 – Exit the Current SSH Session
 
 Bash
 
@@ -248,14 +175,24 @@ logout
 Connection to bandit.labs.overthewire.org closed.
 ```
 
-### Step 6 – Log into Bandit Level 6
+You will return to your Windows Command Prompt or PowerShell prompt.
 
-From your Linux terminal, connect to the next level.
+Example:
 
-Bash
+cmd
 
 ```
-user@ubuntu:~$ ssh bandit6@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername>
+```
+
+### Step 6 – Log into Bandit Level 6
+
+From Windows Command Prompt or PowerShell, connect to the next Bandit level.
+
+PowerShell
+
+```
+C:\Users\YourUsername> ssh bandit6@bandit.labs.overthewire.org -p 2220
 ```
 
 Password Prompt
@@ -278,17 +215,19 @@ You are now logged into Bandit Level 6.
 
 ## Complete Command Sequence
 
-Bash
+PowerShell
 
 ```
-bandit5@bandit:~$ pwd
-bandit5@bandit:~$ ls
-bandit5@bandit:~$ cd inhere
-bandit5@bandit:~/inhere$ find . -type f -size 1033c ! -executable
-bandit5@bandit:~/inhere$ cat ./maybehere07/.file2
-bandit5@bandit:~/inhere$ exit
+# Inside the Bandit server
+pwd
+ls
+cd inhere
+find . -type f -size 1033c ! -executable
+cat ./maybehere07/.file2
+exit
 
-user@ubuntu:~$ ssh bandit6@bandit.labs.overthewire.org -p 2220
+# Back in Windows Command Prompt / PowerShell
+ssh bandit6@bandit.labs.overthewire.org -p 2220
 ```
 
 ## Explanation
@@ -308,7 +247,7 @@ Explanation
 
 |
 
-Confirms the current working directory.
+Confirms the current working directory on the remote Linux server.
 
 |
 |
@@ -353,7 +292,7 @@ Reads the password stored in the located file.
 
 |
 
-Closes the current SSH session.
+Closes the current SSH session and returns to Windows Command Prompt or PowerShell.
 
 |
 |
@@ -409,9 +348,10 @@ The `find` command is much faster than checking hundreds of files manually.
 
 ## Terminal Output (Example)
 
-Bash
-
 ```
+C:\Users\YourUsername> ssh bandit5@bandit.labs.overthewire.org -p 2220
+bandit5@bandit.labs.overthewire.org's password:
+
 bandit5@bandit:~$ pwd
 /home/bandit5
 
@@ -430,8 +370,9 @@ bandit5@bandit:~/inhere$ exit
 logout
 Connection to bandit.labs.overthewire.org closed.
 
-user@ubuntu:~$ ssh bandit6@bandit.labs.overthewire.org -p 2220
+C:\Users\YourUsername> ssh bandit6@bandit.labs.overthewire.org -p 2220
 bandit6@bandit.labs.overthewire.org's password:
+
 bandit6@bandit:~$
 ```
 
@@ -447,10 +388,8 @@ bandit6@bandit:~$
 
 * Retrieved the password for Bandit Level 6.
 
-* Logged into bandit6 using SSH from the Linux terminal.
+* Logged into bandit6 using SSH from Windows Command Prompt / PowerShell.
 
 ## Result
 
-Successfully located the file `./maybehere07/.file2`, obtained the Bandit Level 6 password, and logged into the bandit6 account using the Linux terminal.
-
-<img width="538" height="132" alt="image" src="https://github.com/user-attachments/assets/05e694fa-7916-4237-8ce0-83c75c77c08d" />
+Successfully located the file `./maybehere07/.file2`, obtained the Bandit Level 6 password, and logged into the bandit6 account using Windows Command Prompt / PowerShell.
