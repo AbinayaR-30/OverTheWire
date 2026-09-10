@@ -156,3 +156,4 @@ ssh bandit8@bandit.labs.overthewire.org -p 2220
 ## Result
 
 Successfully searched `data.txt` with `grep`, found the password next to **millionth**, obtained the **Bandit Level 8** password `cvX2JJa4CFALtqS87jk27qwqGhBM9plV`, and logged into the **bandit8** account.
+<img width="528" height="133" alt="image" src="https://github.com/user-attachments/assets/c0de502b-3f23-4929-8569-e83d5c2d12b3" />
