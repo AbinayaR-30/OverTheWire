@@ -1,173 +1,302 @@
-# Bandit Level 9 → Level 10
+# Bandit Level 9 → Level 10 (Linux Terminal)
 
 ## Level Goal
 
-The password for **Bandit Level 10** is stored in the file **`data.txt`** in one of the few **human-readable strings**, preceded by several **`=`** characters.
+The password for Bandit Level 10 is stored in the file `data.txt` in one of the few human-readable strings, preceded by several `=` characters.
 
 The challenge is to extract readable text from a binary file and search for the password.
 
----
-
 ## Concept Learned
 
-This level introduces the **`strings`** command.
+This level introduces the `strings` command.
 
-* **`strings`** extracts human-readable text from a binary file.
-* **`grep`** filters the extracted text and finds the line containing a specific pattern (`=` characters).
+* `strings` extracts human-readable text from a binary file.
+
+* `grep` filters the extracted text and finds the line containing a specific pattern (`=` characters).
+
+* A pipe (`|`) sends the output of `strings` directly to `grep`.
 
 ### Commands Used
 
-| Command   | Purpose                                                   |                                           |
-| --------- | --------------------------------------------------------- | ----------------------------------------- |
-| `pwd`     | Shows the current working directory.                      |                                           |
-| `ls`      | Lists files in the current directory.                     |                                           |
-| `strings` | Extracts readable strings from a binary file.             |                                           |
-| `grep`    | Searches for a specific pattern in the extracted strings. |                                           |
-| `         | `                                                         | Pipes output from one command to another. |
-| `ssh`     | Logs into the next Bandit level.                          |                                           |
+| Linux Command | Purpose | |---------------|---------| | `pwd` | Shows the current working directory. | | `ls` | Lists files in the current directory. | | `strings` | Extracts readable strings from a binary file. | | `grep` | Searches for a specific pattern in the extracted strings. | | `|` (pipe) | Sends output from one command to another. | | `exit` | Closes the current SSH session. | | `ssh` | Logs into the next Bandit level. |
 
----
-
-## Walkthrough (Windows Command Prompt)
+## Walkthrough (Linux Terminal)
 
 ### Step 1 – Verify Your Current Directory
 
-After logging into **bandit9**, check your location.
+After logging into bandit9, check your current location.
 
-```bash
-pwd
+Bash
+
+```
+bandit9@bandit:~$ pwd
 ```
 
-**Output**
+Output
 
-```text
+```
 /home/bandit9
 ```
 
----
+This confirms that you are inside the bandit9 home directory.
 
 ### Step 2 – List Files
 
-Display the files in the home directory.
+Display the files in the current directory.
 
-```bash
-ls
+Bash
+
+```
+bandit9@bandit:~$ ls
 ```
 
-**Output**
+Output
 
-```text
+```
 data.txt
 ```
 
-The file contains mostly binary data, so `cat` will display unreadable characters.
-
----
+The file contains mostly binary data, so viewing it with `cat` would display unreadable characters.
 
 ### Step 3 – Extract Readable Strings and Search for `=`
 
 Run the following command:
 
-```bash
-strings data.txt | grep "=="
+Bash
+
+```
+bandit9@bandit:~$ strings data.txt | grep "=="
 ```
 
 ### Explanation of the Command
 
-| Part               | Meaning                                                   |                                                  |
-| ------------------ | --------------------------------------------------------- | ------------------------------------------------ |
-| `strings data.txt` | Extracts all human-readable strings from the binary file. |                                                  |
-| `                  | `                                                         | Sends the extracted strings to the next command. |
-| `grep "=="`        | Finds lines containing multiple `=` characters.           |                                                  |
+| Command Part | Meaning | |--------------|---------| | `strings data.txt` | Extracts all human-readable strings from the binary file. | | `|` | Sends the extracted strings to the next command. | | `grep "=="` | Finds lines containing multiple `=` characters. |
 
-**Output**
+Output
 
-```text
-========== <next level password>
+```
+========== <Bandit Level 10 Password>
 ```
 
-The text after the `=` characters is the password.
-
----
+The text after the `=` characters is the password for the next level.
 
 ### Step 4 – Password for Bandit Level 10
 
-```text
-<lvl 10 password>
+```
+<Bandit Level 10 Password>
 ```
 
-This is the password for **bandit10**.
-
----
+Copy this password carefully. It will be used to log into bandit10.
 
 ### Step 5 – Exit the Current Session
 
-```bash
-exit
+Bash
+
+```
+bandit9@bandit:~$ exit
 ```
 
----
+Output
+
+```
+logout
+Connection to bandit.labs.overthewire.org closed.
+```
 
 ### Step 6 – Log into Bandit Level 10
 
-```cmd
-ssh bandit10@bandit.labs.overthewire.org -p 2220
+From your Linux terminal, connect to the next level.
+
+Bash
+
+```
+user@ubuntu:~$ ssh bandit10@bandit.labs.overthewire.org -p 2220
 ```
 
-When prompted, enter the password above.
+Password Prompt
 
-**Successful Login Prompt**
+```
+bandit10@bandit.labs.overthewire.org's password:
+```
 
-```text
+Enter the password obtained from `strings` and `grep`.
+
+Successful Login Prompt
+
+Bash
+
+```
 bandit10@bandit:~$
 ```
 
----
+You are now logged into Bandit Level 10.
 
 ## Complete Command Sequence
 
-```bash
-pwd
-ls
-strings data.txt | grep "=="
-exit
-ssh bandit10@bandit.labs.overthewire.org -p 2220
-```
+Bash
 
----
+```
+bandit9@bandit:~$ pwd
+bandit9@bandit:~$ ls
+bandit9@bandit:~$ strings data.txt | grep "=="
+bandit9@bandit:~$ exit
+
+user@ubuntu:~$ ssh bandit10@bandit.labs.overthewire.org -p 2220
+```
 
 ## Explanation
 
-* `strings` extracts readable text from a binary file.
-* `grep "=="` filters only the lines containing several `=` characters.
-* The password appears immediately after the `=` symbols.
-* `ssh` logs into **bandit10** using the retrieved password.
+|
+Command
 
----
+|
+
+Explanation
+
+|
+| --- | --- |
+|
+
+`pwd`
+
+|
+
+Confirms the current working directory.
+
+|
+|
+
+`ls`
+
+|
+
+Lists files in the current directory.
+
+|
+|
+
+`strings data.txt`
+
+|
+
+Extracts readable text from the binary file.
+
+|
+|
+
+`grep "=="`
+
+|
+
+Filters only the lines containing multiple `=` characters.
+
+|
+|
+
+`strings data.txt \| grep "=="`
+
+|
+
+Combines both commands to locate the password.
+
+|
+|
+
+`exit`
+
+|
+
+Closes the current SSH session.
+
+|
+|
+
+`ssh bandit10@bandit.labs.overthewire.org -p 2220`
+
+|
+
+Connects to Bandit Level 10 using SSH.
+
+|
 
 ## Why Use `strings`?
 
-| Command                         | Result                                                   |
-| ------------------------------- | -------------------------------------------------------- |
-| `cat data.txt`                  | Displays unreadable binary characters.                   |
-| `strings data.txt`              | Displays only readable text inside the binary file.      |
-| `strings data.txt \| grep "=="` | Displays only the readable line containing the password. |
+|
+Command
 
-`strings` is useful for extracting hidden text from binary files.
+|
 
----
+Result
+
+|
+| --- | --- |
+|
+
+`cat data.txt`
+
+|
+
+Displays unreadable binary characters.
+
+|
+|
+
+`strings data.txt`
+
+|
+
+Displays only readable text inside the binary file.
+
+|
+|
+
+`strings data.txt \| grep "=="`
+
+|
+
+Displays only the readable line containing the password.
+
+|
+
+The `strings` command is useful for extracting hidden or readable text from binary files.
+
+## Terminal Output (Example)
+
+Bash
+
+```
+bandit9@bandit:~$ pwd
+/home/bandit9
+
+bandit9@bandit:~$ ls
+data.txt
+
+bandit9@bandit:~$ strings data.txt | grep "=="
+========== <Bandit Level 10 Password>
+
+bandit9@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+
+user@ubuntu:~$ ssh bandit10@bandit.labs.overthewire.org -p 2220
+bandit10@bandit.labs.overthewire.org's password:
+bandit10@bandit:~$
+```
 
 ## Key Takeaways
 
-* Learned how to extract readable text using **`strings`**.
-* Combined **`strings`** and **`grep`** using a pipe.
-* Searched for a specific pattern (`=` characters).
-* Retrieved the password for **Bandit Level 10** and logged into the next level.
+* Learned how to extract readable text from a binary file using `strings`.
 
----
+* Combined `strings` and `grep` using a pipe (`|`).
+
+* Searched for a specific pattern (`=` characters) to locate the password.
+
+* Retrieved the password for Bandit Level 10.
+
+* Logged into bandit10 using SSH from the Linux terminal.
 
 ## Result
 
-Successfully extracted the readable string from `data.txt`, obtained the **Bandit Level 10** password `<lvl 10 password>`, and logged into the **bandit10** account.
-<img width="456" height="143" alt="image" src="https://github.com/user-attachments/assets/e97ec14e-4e05-44d4-8d07-7c3f54e949a4" />
+Successfully extracted the readable string from `data.txt`, obtained the Bandit Level 10 password, and logged into the bandit10 account using the Linux terminal.
 
+<img width="456" height="143" alt="image" src="https://github.com/user-attachments/assets/e97ec14e-4e05-44d4-8d07-7c3f54e949a4" />
