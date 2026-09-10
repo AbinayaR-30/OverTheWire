@@ -197,3 +197,4 @@ ssh bandit15@bandit.labs.overthewire.org -p 2220
 ## Result
 
 Successfully connected to **localhost:30000** using Netcat, submitted the **Bandit Level 14** password, obtained the **Bandit Level 15** password **`cluFn7wTiGryunymYOu4RcffSxQluehd`**, and logged into the **bandit15** account.
+<img width="371" height="126" alt="image" src="https://github.com/user-attachments/assets/35fead64-8951-40bb-8443-4d14f258ac2a" />
