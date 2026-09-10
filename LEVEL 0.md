@@ -145,7 +145,7 @@ readme
 ```
 
 This file contains the password for **Level 1**, which will be solved in the next walkthrough.
-<img width="1146" height="280" alt="image" src="https://github.com/user-attachments/assets/d3f6701c-615a-43c6-b35b-55fd363e904c" />
+
 
 ---
 
