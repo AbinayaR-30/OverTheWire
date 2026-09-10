@@ -217,6 +217,8 @@ ssh bandit5@bandit.labs.overthewire.org -p 2220
 * Retrieved the password for **Bandit Level 5** and logged into the next level.
 
 ---
+<img width="762" height="514" alt="image" src="https://github.com/user-attachments/assets/8853c7ae-1bb1-489f-8154-fda91252c7b0" />
+
 
 ## Result
 
