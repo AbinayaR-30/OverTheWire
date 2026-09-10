@@ -1,810 +1,190 @@
-# Bandit Level 12 → Level 13 (Linux Terminal)
+# Bandit Level 12 → Level 13
 
-## Level Goal
+## Walkthrough
 
-The password for Bandit Level 13 is stored in the file `data.txt`. The file is a hexdump of another file that has been compressed multiple times using different compression formats (`gzip`, `bzip2`, `tar`, etc.).
+Step 1: Verify your current directory.
 
-The challenge is to reconstruct the original binary file from the hexdump and repeatedly decompress it until the password is revealed.
-
-## Concept Learned
-
-This level introduces several important Linux file utilities:
-
-* `xxd -r` converts a hexadecimal dump back into its original binary file.
-
-* `file` identifies the type of a file.
-
-* `mv` renames files so decompression tools recognize the correct extension.
-
-* `gzip`, `bzip2`, and `tar` extract compressed files.
-
-* `mktemp -d` creates a secure temporary working directory.
-
-This is the longest Bandit level so far and teaches how to inspect and decompress files step by step.
-
-### Commands Used
-
-|
-Linux Command
-
-|
-
-Purpose
-
-|
-| --- | --- |
-|
-
-`pwd`
-
-|
-
-Shows the current working directory.
-
-|
-|
-
-`mktemp -d`
-
-|
-
-Creates a secure temporary directory.
-
-|
-|
-
-`cd`
-
-|
-
-Moves into the temporary directory.
-
-|
-|
-
-`cp`
-
-|
-
-Copies `data.txt` into the temporary directory.
-
-|
-|
-
-`xxd -r`
-
-|
-
-Converts a hexadecimal dump back into binary data.
-
-|
-|
-
-`file`
-
-|
-
-Detects the current file type.
-
-|
-|
-
-`mv`
-
-|
-
-Renames files with the correct extension.
-
-|
-|
-
-`gzip -d`
-
-|
-
-Decompresses a Gzip file.
-
-|
-|
-
-`bzip2 -d`
-
-|
-
-Decompresses a Bzip2 file.
-
-|
-|
-
-`tar -xf`
-
-|
-
-Extracts a tar archive.
-
-|
-|
-
-`ls`
-
-|
-
-Lists extracted files.
-
-|
-|
-
-`cat`
-
-|
-
-Displays the password.
-
-|
-|
-
-`rm -r`
-
-|
-
-Removes the temporary directory.
-
-|
-|
-
-`exit`
-
-|
-
-Closes the current SSH session.
-
-|
-|
-
-`ssh`
-
-|
-
-Logs into the next Bandit level.
-
-|
-
-## Walkthrough (Linux Terminal)
-
-### Step 1 – Verify Your Current Directory
-
-After logging into bandit12, check your current location.
-
-Bash
-
-```
-bandit12@bandit:~$ pwd
-```
+pwd
 
 Output
 
-```
 /home/bandit12
-```
 
-This confirms that you are inside the bandit12 home directory.
+This confirms you are in the `bandit12` home directory.
 
-### Step 2 – Create a Temporary Working Directory
+Step 2: Create a temporary working directory.
 
-Create a secure temporary directory.
-
-Bash
-
-```
-bandit12@bandit:~$ mktemp -d
-```
+mktemp -d
 
 Output (Example)
 
-```
 /tmp/tmp.X4A1b2C3d4
-```
-
-> Note: The directory name will be different every time.
 
 Move into the temporary directory.
 
-Bash
+cd /tmp/tmp.X4A1b2C3d4
 
-```
-bandit12@bandit:~$ cd /tmp/tmp.X4A1b2C3d4
-```
+<img width="571" height="88" alt="image" src="https://github.com/user-attachments/assets/49b1e255-5822-44a1-aff7-f3203e815c14" />
 
-### Step 3 – Copy `data.txt` to the Temporary Directory
 
-Copy the original file into the temporary workspace.
+Step 3: Copy `data.txt` into the temporary directory.
 
-Bash
+cp ~/data.txt .
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ cp ~/data.txt .
-```
+This creates a copy so the original file is not modified.
 
-Output
+Step 4: Convert the hexdump back to a binary file.
 
-```
-(No output)
-```
+xxd -r data.txt data.bin
 
-The file is now available inside the temporary directory.
+This creates a binary file named `data.bin`.
 
-### Step 4 – Convert the Hexdump into a Binary File
+Step 5: Check the file type.
 
-Reconstruct the original binary file.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ xxd -r data.txt data.bin
-```
+file data.bin
 
 Output
 
-```
-(No output)
-```
-
-`data.bin` now contains the original binary data.
-
-### Step 5 – Identify the File Type
-
-Check what type of file `data.bin` is.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data.bin
-```
-
-Output
-
-```
 data.bin: gzip compressed data
-```
 
-The file is identified as a Gzip archive.
+Use `file` after every extraction to know the next compression format.
 
-# Step-by-Step Decompression Process
+Step 6: Decompress the files in the correct order.
 
-Follow these steps exactly.
+1. Gzip
 
-## 1. First Gzip Extraction
+mv data.bin data.gz gzip -d data.gz
 
-Rename the file with a `.gz` extension and decompress it.
+2. Bzip2
 
-Bash
+mv data data.bz2 bzip2 -d data.bz2
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data.bin data.gz
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ gzip -d data.gz
-```
+3. Gzip
 
-Check the new file type.
+mv data data.gz gzip -d data.gz
 
-Bash
+4. Tar
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data
-```
+mv data data.tar tar -xf data.tar
 
-Output
+5. Tar
 
-```
-data: bzip2 compressed data
-```
+mv data5.bin data5.tar tar -xf data5.tar
 
-## 2. First Bzip2 Extraction
+6. Bzip2
 
-Rename and decompress the Bzip2 file.
+mv data6.bin data6.bz2 bzip2 -d data6.bz2
 
-Bash
+7. Tar
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data data.bz2
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ bzip2 -d data.bz2
-```
+mv data6 data6.tar tar -xf data6.tar
 
-Check the file type again.
+8. Gzip
 
-Bash
+mv data8.bin data8.gz gzip -d data8.gz
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data
-```
+The final file becomes ASCII text.
+
+Step 7: Read the final file.
+
+cat data8
 
 Output
 
-```
-data: gzip compressed data
-```
+The password is <Bandit Level 13 Password>
 
-## 3. Second Gzip Extraction
+Copy this password. You will use it to log in to bandit13.
 
-Rename and decompress again.
+Step 8: Remove the temporary directory and exit.
 
-Bash
+cd rm -r /tmp/tmp.X4A1b2C3d4 exit
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data data.gz
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ gzip -d data.gz
-```
+This cleans up the temporary files and returns you to Windows Command Prompt or PowerShell.
 
-Check the file type.
+Step 9: Log in to bandit13.
 
-Bash
+ssh [bandit13@bandit.labs.overthewire.org](mailto:bandit13@bandit.labs.overthewire.org) -p 2220
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data
-```
+When prompted, paste the password from Step 7.
 
-Output
+## Commands Used
 
-```
-data: POSIX tar archive
-```
+pwd
 
-## 4. First Tar Extraction
+Shows the current working directory.
 
-Rename and extract the tar archive.
+mktemp -d
 
-Bash
+Creates a temporary working directory.
 
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data data.tar
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ tar -xf data.tar
-```
+cd
 
-List the extracted files.
+Moves into the temporary directory.
 
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ ls
-```
-
-Output
-
-```
-data5.bin
-data.tar
-data.txt
-```
-
-Check the extracted file type.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data5.bin
-```
-
-Output
-
-```
-data5.bin: POSIX tar archive
-```
-
-## 5. Second Tar Extraction
-
-Rename and extract the second tar archive.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data5.bin data5.tar
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ tar -xf data5.tar
-```
-
-List the files again.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ ls
-```
-
-Output
-
-```
-data5.tar
-data6.bin
-data.tar
-data.txt
-```
-
-Check the new file type.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data6.bin
-```
-
-Output
-
-```
-data6.bin: bzip2 compressed data
-```
-
-## 6. Second Bzip2 Extraction
-
-Rename and decompress.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data6.bin data6.bz2
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ bzip2 -d data6.bz2
-```
-
-Check the file type.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data6
-```
-
-Output
-
-```
-data6: POSIX tar archive
-```
-
-## 7. Third Tar Extraction
-
-Rename and extract the archive.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data6 data6.tar
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ tar -xf data6.tar
-```
-
-List the files.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ ls
-```
-
-Output
-
-```
-data8.bin
-data6.tar
-data5.tar
-data.tar
-data.txt
-```
-
-Check the file type.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data8.bin
-```
-
-Output
-
-```
-data8.bin: gzip compressed data
-```
-
-## 8. Final Gzip Extraction
-
-Rename and decompress the final archive.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data8.bin data8.gz
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ gzip -d data8.gz
-```
-
-Check the final file.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ file data8
-```
-
-Output
-
-```
-data8: ASCII text
-```
-
-The file is now plain text and can be read.
-
-### Step 6 – Read the Password
-
-Display the contents of the final file.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ cat data8
-```
-
-Output
-
-```
-The password is <next level password>
-```
-
-This is the password for Bandit Level 13.
-
-### Step 7 – Password for Bandit Level 13
-
-```
-<next level password>
-```
-
-Copy this password carefully.
-
-### Step 8 – Exit the Temporary Directory and Clean Up
-
-Return to your home directory and remove the temporary folder.
-
-Bash
-
-```
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ cd
-bandit12@bandit:~$ rm -r /tmp/tmp.X4A1b2C3d4
-bandit12@bandit:~$ exit
-```
-
-Output
-
-```
-logout
-Connection to bandit.labs.overthewire.org closed.
-```
-
-### Step 9 – Log into Bandit Level 13
-
-From your Linux terminal, connect to the next level.
-
-Bash
-
-```
-user@ubuntu:~$ ssh bandit13@bandit.labs.overthewire.org -p 2220
-```
-
-When prompted, enter the password obtained from `cat data8`.
-
-Password Prompt
-
-```
-bandit13@bandit.labs.overthewire.org's password:
-```
-
-Successful Login Prompt
-
-Bash
-
-```
-bandit13@bandit:~$
-```
-
-You are now logged into Bandit Level 13.
-
-## Complete Command Sequence
-
-Bash
-
-```
-bandit12@bandit:~$ mktemp -d
-bandit12@bandit:~$ cd /tmp/tmp.X4A1b2C3d4
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ cp ~/data.txt .
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ xxd -r data.txt data.bin
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data.bin data.gz
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ gzip -d data.gz
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data data.bz2
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ bzip2 -d data.bz2
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data data.gz
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ gzip -d data.gz
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data data.tar
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ tar -xf data.tar
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data5.bin data5.tar
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ tar -xf data5.tar
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data6.bin data6.bz2
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ bzip2 -d data6.bz2
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data6 data6.tar
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ tar -xf data6.tar
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ mv data8.bin data8.gz
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ gzip -d data8.gz
-
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ cat data8
-bandit12@bandit:/tmp/tmp.X4A1b2C3d4$ exit
-
-user@ubuntu:~$ ssh bandit13@bandit.labs.overthewire.org -p 2220
-```
-
-## Explanation
-
-|
-Command
-
-|
-
-Explanation
-
-|
-| --- | --- |
-|
-
-`mktemp -d`
-
-|
-
-Creates a secure temporary workspace.
-
-|
-|
-
-`cp ~/data.txt .`
-
-|
+cp ~/data.txt .
 
 Copies `data.txt` into the temporary directory.
 
-|
-|
+xxd -r data.txt data.bin
 
-`xxd -r data.txt data.bin`
+Converts the hexdump back into a binary file.
 
-|
+file
 
-Reconstructs the original binary file from the hexadecimal dump.
+Identifies the type of the current file.
 
-|
-|
+mv
 
-`file data.bin`
+Renames a file with the correct extension.
 
-|
+gzip -d
 
-Identifies the current file type after each extraction.
+Decompresses a Gzip file.
 
-|
-|
+bzip2 -d
 
-`mv`
+Decompresses a Bzip2 file.
 
-|
+tar -xf
 
-Renames files with the correct extension so decompression tools recognize them.
+Extracts a tar archive.
 
-|
-|
+cat data8
 
-`gzip -d`
+Displays the final password.
 
-|
+rm -r
 
-Decompresses Gzip-compressed files.
+Deletes the temporary directory.
 
-|
-|
+exit
 
-`bzip2 -d`
+Closes the current SSH session.
 
-|
+ssh [bandit13@bandit.labs.overthewire.org](mailto:bandit13@bandit.labs.overthewire.org) -p 2220
 
-Decompresses Bzip2-compressed files.
+Logs into Bandit Level 13.
 
-|
-|
+## Concept Learnt
 
-`tar -xf`
+This level teaches how to reconstruct and decompress files step by step.
 
-|
+* `xxd -r` converts a hexadecimal dump back into its original binary file.
 
-Extracts files from a tar archive.
+* `file` identifies the current file type after each extraction.
 
-|
-|
+* `gzip`, `bzip2`, and `tar` extract different compression formats.
 
-`cat data8`
+* `mktemp -d` creates a safe temporary workspace for processing files.
 
-|
+## Takeaways
 
-Displays the password stored in the final text file.
+* Always work in a temporary directory when modifying files.
 
-|
-|
+* Use `xxd -r` to convert a hexdump into a binary file.
 
-`ssh bandit13@bandit.labs.overthewire.org -p 2220`
+* Use `file` after every extraction to identify the next file type.
 
-|
+* Rename files with the correct extension before decompressing.
 
-Logs into Bandit Level 13 using the recovered password.
-
-|
-
-## Why Use `file` After Every Extraction?
-
-|
-Command
-
-|
-
-Result
-
-|
-| --- | --- |
-|
-
-`file data.bin`
-
-|
-
-Identifies whether the file is gzip, bzip2, tar, or ASCII text.
-
-|
-|
-
-`gzip -d`, `bzip2 -d`, `tar -xf`
-
-|
-
-Uses the correct extraction tool based on the detected file type.
-
-|
-
-Checking the file type after every extraction ensures you always know the next decompression step.
-
-## Terminal Output Summary
-
-```
-data.bin  → gzip compressed data
-data      → bzip2 compressed data
-data      → gzip compressed data
-data      → POSIX tar archive
-data5.bin → POSIX tar archive
-data6.bin → bzip2 compressed data
-data6     → POSIX tar archive
-data8.bin → gzip compressed data
-data8     → ASCII text
-```
-
-The compression formats are removed one by one until the final file becomes readable text.
-
-## Key Takeaways
-
-* Learned how to reverse a hexdump using `xxd -r`.
-
-* Used `mktemp -d` to create a secure temporary working directory.
-
-* Identified file formats using the `file` command.
-
-* Worked with gzip, bzip2, and tar compression formats.
-
-* Performed multiple decompression steps in the correct order.
-
-* Retrieved the password for Bandit Level 13 and logged into the next level.
-
-## Result
-
-Successfully reconstructed and decompressed the hexdump file, obtained the Bandit Level 13 password, and logged into the bandit13 account using the Linux terminal.
-
-<img width="657" height="187" alt="image" src="https://github.com/user-attachments/assets/d416591a-626f-4a64-8e6b-77ff3c078b15" />
+* Keep extracting until the file becomes ASCII text, then use `cat` to read the password.
