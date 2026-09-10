@@ -121,6 +121,9 @@ Output
 inhere
 ```
 
+<img width="322" height="52" alt="image" src="https://github.com/user-attachments/assets/f428f04f-77a7-4894-8328-aaf59ff00692" />
+
+
 A directory named `inhere` is present.
 
 ### Step 3 – Enter the `inhere` Directory
@@ -132,6 +135,9 @@ Bash
 ```
 bandit4@bandit:~$ cd inhere
 ```
+
+<img width="424" height="61" alt="image" src="https://github.com/user-attachments/assets/96b59931-814f-4c51-9a7f-87cea611abf9" />
+
 
 Verify your location.
 
@@ -156,6 +162,8 @@ Bash
 ```
 bandit4@bandit:~/inhere$ ls
 ```
+<img width="1338" height="64" alt="image" src="https://github.com/user-attachments/assets/3302a9c9-8658-4351-afad-83c07c58dcf5" />
+
 
 Output
 
@@ -183,6 +191,9 @@ Bash
 ```
 bandit4@bandit:~/inhere$ file ./*
 ```
+
+<img width="940" height="313" alt="image" src="https://github.com/user-attachments/assets/06ba1384-26c0-4ca9-9590-39f33b44339d" />
+
 
 Output (Example)
 
@@ -212,6 +223,9 @@ Bash
 ```
 bandit4@bandit:~/inhere$ cat ./file03
 ```
+
+<img width="591" height="70" alt="image" src="https://github.com/user-attachments/assets/b4c182b5-e3a3-4593-b84f-3f7ff6ccbfc8" />
+
 
 Output
 
