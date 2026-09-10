@@ -156,3 +156,5 @@ Quotes prevent the shell from splitting the filename at spaces.
 ## Result
 
 Successfully accessed the file **`--spaces in this filename--`**, obtained the **Bandit Level 3** password, and logged into the **bandit3** account.
+<img width="641" height="316" alt="image" src="https://github.com/user-attachments/assets/707aefd1-457b-4fac-82a3-935c9daf6660" />
+
