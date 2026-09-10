@@ -167,3 +167,5 @@ ssh bandit9@bandit.labs.overthewire.org -p 2220
 ## Result
 
 Successfully found the only unique line in `data.txt`, obtained the **Bandit Level 9** password `UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR`, and logged into the **bandit9** account.
+<img width="447" height="130" alt="image" src="https://github.com/user-attachments/assets/c6d3a3fe-ca29-44bc-aa2b-a5cd2bc82e5b" />
+
